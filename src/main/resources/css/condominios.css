@@ -1,0 +1,72 @@
+.mainFxmlClass {
+
+}
+
+
+.card-container {
+    -fx-background-color: #FAF8F5;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.08), 15, 0, 0, 4);
+}
+ 
+.title-primary {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+ 
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8C2F1B;
+    -fx-font-weight: bold;
+}
+
+ 
+.button-primary {
+    -fx-background-color: #EE6C4D;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
+ 
+.button-primary:hover {
+    -fx-background-color: #E05A36;
+}
+
+.button-secundary {
+    -fx-background-color: #FAF8F5;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #2C3E50;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.button-secundary:hover {
+    -fx-background-color: #EFECE6;
+}
+ 
+.custom-combo {
+    -fx-background-color: #F4F0EA;
+    -fx-background-radius: 8px;
+    -fx-padding: 3px;
+}
+ 
+.custom-combo .cell {
+    -fx-text-fill: #1E1E1E;
+}
+ 
+.custom-combo:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #EE6C4D;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.banner-container {
+    -fx-background-color: #EE6C4D;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.08), 15, 0, 0, 4);
+}
+
