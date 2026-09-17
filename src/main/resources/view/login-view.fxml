@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.LoginViewController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="450.0" prefWidth="280.0" spacing="20.0" HBox.hgrow="NEVER">
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="160.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/admin-residencial.jpg" />
+               </image></ImageView>
+            <Label text="Gestión Residencial" />
+            <Label text="Sistema Integral de Administración" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </VBox>
+
+      <VBox alignment="CENTER_LEFT" prefHeight="450.0" prefWidth="420.0" spacing="15.0" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+         <children>
+            <Label text="Iniciar Sesión" />
+            <Label text="Ingrese sus credenciales de acceso" />
+            
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Usuario" />
+                  <TextField fx:id="txtUsername" promptText="Ingrese su nombre de usuario" />
+               </children>
+            </VBox>
+
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Contraseña" />
+                  <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" />
+               </children>
+            </VBox>
+
+            <Label fx:id="lblMensaje" wrapText="true" />
+
+            <Button mnemonicParsing="false" onAction="#handleLogin" text="Iniciar Sesión" />
+            <Button mnemonicParsing="false" onAction="#handleRegistro" text="¿No tienes cuenta? Regístrate aquí" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

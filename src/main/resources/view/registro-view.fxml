@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.RegistroViewController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="550.0" prefWidth="280.0" spacing="20.0" HBox.hgrow="NEVER">
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+         <children>
+            <ImageView fx:id="imgLogo" fitHeight="100.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+            <Label text="Gestión Residencial" />
+            <Label text="Crea una cuenta para acceder a la plataforma de administración" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </VBox>
+
+      <VBox alignment="CENTER_LEFT" prefHeight="550.0" prefWidth="470.0" spacing="12.0" HBox.hgrow="ALWAYS">
+         <padding>
+            <Insets bottom="35.0" left="40.0" right="40.0" top="35.0" />
+         </padding>
+         <children>
+            <Label text="Registro de Usuario" />
+            <Label text="Complete la información solicitada" />
+
+            <VBox spacing="4.0">
+               <children>
+                  <Label text="Nombre" />
+                  <TextField fx:id="txtNombre" promptText="Ingrese su nombre" />
+               </children>
+            </VBox>
+
+            <VBox spacing="4.0">
+               <children>
+                  <Label text="Apellido" />
+                  <TextField fx:id="txtApellido" promptText="Ingrese su apellido" />
+               </children>
+            </VBox>
+
+            <VBox spacing="4.0">
+               <children>
+                  <Label text="Nombre de Usuario" />
+                  <TextField fx:id="txtUsername" promptText="Cree un nombre de usuario" />
+               </children>
+            </VBox>
+
+            <VBox spacing="4.0">
+               <children>
+                  <Label text="Contraseña" />
+                  <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" />
+               </children>
+            </VBox>
+
+            <VBox spacing="4.0">
+               <children>
+                  <Label text="Rol" />
+                  <ComboBox fx:id="cmbRol" prefWidth="390.0" promptText="Seleccione un rol" />
+               </children>
+            </VBox>
+
+            <Label fx:id="lblMensaje" wrapText="true" />
+
+            <VBox spacing="8.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#handleRegistrar" prefWidth="390.0" text="Registrar Cuenta" />
+                  <Button mnemonicParsing="false" onAction="#handleVolverLogin" prefWidth="390.0" text="¿Ya tienes cuenta? Inicia sesión" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
