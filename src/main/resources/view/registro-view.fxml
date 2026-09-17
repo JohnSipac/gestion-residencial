@@ -1,80 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<HBox prefHeight="550.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.RegistroViewController">
+<StackPane prefHeight="580.0" prefWidth="780.0" styleClass="root-container" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.RegistroViewController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
    <children>
-      <VBox alignment="CENTER" prefHeight="550.0" prefWidth="280.0" spacing="20.0" HBox.hgrow="NEVER">
-         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-         </padding>
+      <HBox prefHeight="540.0" prefWidth="740.0" styleClass="card-container">
          <children>
-            <ImageView fx:id="imgLogo" fitHeight="100.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-            <Label text="Gestión Residencial" />
-            <Label text="Crea una cuenta para acceder a la plataforma de administración" textAlignment="CENTER" wrapText="true" />
+            <VBox alignment="CENTER" prefHeight="540.0" prefWidth="280.0" spacing="15.0" styleClass="brand-panel" stylesheets="@../css/auth-view.css" HBox.hgrow="NEVER">
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+               <children>
+                  <StackPane prefHeight="130.0" prefWidth="130.0">
+                     <children>
+                        <Circle radius="83.0" styleClass="logo-circle-frame" />
+                        <ImageView fx:id="imgLogo" fitHeight="107.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="false">
+                           <image>
+                              <Image url="@../images/user.png" />
+                           </image>
+                           <clip>
+                              <Circle centerX="55.0" centerY="55.0" radius="55.0" />
+                           </clip>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  
+                  <Label styleClass="title-primary" text="Gestión Residencial" />
+                  <Label styleClass="subtitle-brand" text="Crea una cuenta para acceder a la plataforma de administración" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="540.0" prefWidth="460.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="30.0" left="35.0" right="35.0" top="30.0" />
+               </padding>
+               <children>
+                  <Label styleClass="title-primary" text="Registro de Usuario" />
+                  <Label styleClass="subtitle-form" text="Complete la información solicitada" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="label-input" text="Nombre" />
+                              <TextField fx:id="txtNombre" promptText="Ingrese su nombre" styleClass="custom-input" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="label-input" text="Apellido" />
+                              <TextField fx:id="txtApellido" promptText="Ingrese su apellido" styleClass="custom-input" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label styleClass="label-input" text="Nombre de Usuario" />
+                        <TextField fx:id="txtUsername" promptText="Cree un nombre de usuario" styleClass="custom-input" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label styleClass="label-input" text="Contraseña" />
+                        <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" styleClass="custom-input" />
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="4.0">
+                     <children>
+                        <Label styleClass="label-input" text="Rol" />
+                        <ComboBox fx:id="cmbRol" maxWidth="1.7976931348623157E308" promptText="Seleccione un rol" styleClass="custom-combo" />
+                     </children>
+                  </VBox>
+
+                  <Label fx:id="lblMensaje" styleClass="label-error" wrapText="true" />
+                  <VBox spacing="6.0">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRegistrar" styleClass="button-primary" text="Registrar Cuenta" />
+                        <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleVolverLogin" styleClass="button-secondary" text="¿Ya tienes cuenta? Inicia sesión" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
-
-      <VBox alignment="CENTER_LEFT" prefHeight="550.0" prefWidth="470.0" spacing="12.0" HBox.hgrow="ALWAYS">
-         <padding>
-            <Insets bottom="35.0" left="40.0" right="40.0" top="35.0" />
-         </padding>
-         <children>
-            <Label text="Registro de Usuario" />
-            <Label text="Complete la información solicitada" />
-
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Nombre" />
-                  <TextField fx:id="txtNombre" promptText="Ingrese su nombre" />
-               </children>
-            </VBox>
-
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Apellido" />
-                  <TextField fx:id="txtApellido" promptText="Ingrese su apellido" />
-               </children>
-            </VBox>
-
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Nombre de Usuario" />
-                  <TextField fx:id="txtUsername" promptText="Cree un nombre de usuario" />
-               </children>
-            </VBox>
-
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Contraseña" />
-                  <PasswordField fx:id="txtPassword" promptText="Ingrese su contraseña" />
-               </children>
-            </VBox>
-
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Rol" />
-                  <ComboBox fx:id="cmbRol" prefWidth="390.0" promptText="Seleccione un rol" />
-               </children>
-            </VBox>
-
-            <Label fx:id="lblMensaje" wrapText="true" />
-
-            <VBox spacing="8.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#handleRegistrar" prefWidth="390.0" text="Registrar Cuenta" />
-                  <Button mnemonicParsing="false" onAction="#handleVolverLogin" prefWidth="390.0" text="¿Ya tienes cuenta? Inicia sesión" />
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+      </HBox>
    </children>
-</HBox>
+   <stylesheets>
+      <URL value="@../css/auth-view.css" />
+   </stylesheets>
+</StackPane>
