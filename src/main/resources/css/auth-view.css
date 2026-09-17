@@ -1,0 +1,115 @@
+
+.mainFxmlClass {
+
+}
+
+.root-container {
+    -fx-background-color: #F4F0EA;
+}
+
+.card-container {
+    -fx-background-color: #FAF8F5;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.08), 15, 0, 0, 4);
+}
+
+.brand-panel {
+    -fx-background-color: #E5E0D8;
+    -fx-background-radius: 20px 0px 0px 20px;
+}
+
+.logo-circle-frame {
+    -fx-fill: #FAF8F5;
+    -fx-stroke: #EE6C4D;
+    -fx-stroke-width: 3px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 8, 0, 0, 2);
+}
+
+.title-primary {
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E1E1E;
+}
+
+.title-sub-primary {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E1E1E;
+}
+
+.subtitle-brand {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8C2F1B;
+}
+
+.subtitle-form {
+    -fx-font-size: 13px;
+    -fx-text-fill: #9E9A93;
+}
+
+.label-input {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E1E1E;
+}
+
+.label-error {
+    -fx-text-fill: #8C2F1B;
+    -fx-font-size: 12px;
+}
+
+.custom-input {
+    -fx-background-color: #F4F0EA;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-text-inner-color: #1E1E1E;
+    -fx-prompt-text-fill: #9E9A93;
+}
+
+.custom-input:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #EE6C4D;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.button-primary {
+    -fx-background-color: #EE6C4D;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
+
+.button-primary:hover {
+    -fx-background-color: #E05A36;
+}
+
+.button-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8C2F1B;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.button-secondary:hover {
+    -fx-underline: true;
+}
+
+.custom-combo {
+    -fx-background-color: #F4F0EA;
+    -fx-background-radius: 8px;
+    -fx-padding: 3px;
+}
+
+.custom-combo .cell {
+    -fx-text-fill: #1E1E1E;
+}
+
+.custom-combo:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #EE6C4D;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}

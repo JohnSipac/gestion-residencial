@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 import main.java.com.fammateam.gestionresidencial.util.SceneManager;
 
-
 public class LoginViewController implements Initializable {
 
     @FXML
@@ -34,6 +33,9 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (lblMensaje != null) {
+            lblMensaje.setText("");
+        }
 
     }
 
@@ -48,7 +50,7 @@ public class LoginViewController implements Initializable {
         }
 
         if (authService.autenticator(username, password)) {
-            lblMensaje.setText("BIENVENIDO");
+            sceneManager.showMainMenuView();
         } else {
             lblMensaje.setText("Usuario o contraseña incorrectos.");
         }
