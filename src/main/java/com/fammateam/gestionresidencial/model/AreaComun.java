@@ -19,7 +19,6 @@ public class AreaComun {
         this.costoReserva = costoReserva;
     }
 
-    // Getters y Setters
     public int getIdArea() { 
         return idArea; 
     }
