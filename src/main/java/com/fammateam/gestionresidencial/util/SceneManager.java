@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
+import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
+import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 
 
@@ -99,5 +102,16 @@ public class SceneManager {
             return null;
         });
     }
+    
+    public void showAreaComunView() {
+    loadView("area-comun-view.fxml", "Gestión Residencial - Áreas Comunes", clazz -> {
+        if (clazz == AreaComunController.class) {
+            AreaComunRepository repository = new AreaComunRepository();
+                AreaComunService service = new AreaComunService(repository);
+            return new AreaComunController(service, this);
+        }
+        return null;
+    });
+}
 
 }

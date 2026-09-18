@@ -67,7 +67,7 @@
                   </VBox>
 
                   <Label fx:id="lblMensaje" styleClass="label-error" wrapText="true" />
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="button-primary" text="Iniciar Sesión" />
+                  <Button defaultButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="button-primary" text="Iniciar Sesión" />
                   <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRegistro" styleClass="button-secondary" text="¿No tienes cuenta? Regístrate aquí" />
                </children>
             </VBox>
