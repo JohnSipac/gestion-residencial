@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
+import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
@@ -45,7 +47,7 @@ public class SceneManager {
             });
 
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 900, 700);
             primaryStage.setScene(scene);
             primaryStage.setTitle(title);
             primaryStage.centerOnScreen();
@@ -85,6 +87,24 @@ public class SceneManager {
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 AuthService authService = new AuthService(usuarioRepository);
                 return new RegistroViewController(authService, this);
+            }
+            return null;
+        });
+    }
+    
+    public void showMainMenuView(){
+        loadView("main-menu-view.fxml", "Gestion Residencial - Menú Principal", clazz -> {
+            if (clazz == MainMenuController.class) {
+                return new MainMenuController(this);
+            }
+            return null;
+        });
+    }
+    
+    public void showCondominiosView(){
+        loadView("gestion-condominios-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
+            if (clazz == CondominioController.class) {
+                return new CondominioController(this);
             }
             return null;
         });

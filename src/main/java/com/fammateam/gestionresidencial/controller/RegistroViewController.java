@@ -87,7 +87,7 @@ public class RegistroViewController implements Initializable {
         String password = txtPassword.getText();
         String rol = cmbRol.getValue();
 
-        if (nombre.isEmpty() || username.isEmpty() || password.isEmpty() || rol == null) {
+        if (nombre.isEmpty() || apellido.isEmpty() || username.isEmpty() || password.isEmpty() || rol == null) {
             lblMensaje.setText("Por favor complete todos los campos obligatorios.");
             return;
         }
