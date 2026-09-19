@@ -9,10 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -24,51 +25,40 @@ public class CondominioController implements Initializable {
 
     private final SceneManager sceneManager;
     private final CondominioService condominioService;
+    private Condominio condominioSeleccionado;
+
+    @FXML
+    private TableView<Condominio> tvCondominios;
+    @FXML
+    private TableColumn<Condominio, String> tcNombre;
+    @FXML
+    private TableColumn<Condominio, String> tcDireccion;
+    @FXML
+    private TableColumn<Condominio, String> tcTelefono;
+
+    @FXML
+    private AnchorPane panelDatos;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private TextField txtDireccion;
+    @FXML
+    private TextField txtTelefono;
+
+    @FXML
+    private Button btnMainMenu;
 
     public CondominioController(SceneManager sceneManager, CondominioService condominioService) {
         this.sceneManager = sceneManager;
         this.condominioService = condominioService;
     }
 
-    @FXML private TableView<Condominio> tvCondominios;
-    @FXML private TableColumn<Condominio, String> tcNombre;
-    @FXML private TableColumn<Condominio, String> tcDireccion;
-    @FXML private TableColumn<Condominio, String> tcTelefono;
-
-    @FXML private AnchorPane panelDatos;
-    @FXML private TextField txtNombre;
-    @FXML private TextField txtDireccion;
-    @FXML private TextField txtTelefono;
-
-    private Condominio condominioSeleccionado;
-
-    public CondominioController(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-        this.condominioService = new CondominioService();
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        tcDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-        tcTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-
-        panelDatos.setVisible(false);
-        panelDatos.setManaged(false);
-        panelDatos.setPrefWidth(0);
-        panelDatos.setMinWidth(0);
-        panelDatos.setMaxWidth(0);
-
+        configurarTabla();
+        configurarValidacionTelefono();
+        ocultarPanelDatosInicial();
         cargarTabla();
-    }
-
-    private void cargarTabla() {
-        try {
-            ObservableList<Condominio> lista = condominioService.listarCondominios();
-            tvCondominios.setItems(lista);
-        } catch (Exception e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudieron cargar los condominios: " + e.getMessage());
-        }
     }
 
     @FXML
@@ -82,7 +72,7 @@ public class CondominioController implements Initializable {
     private void handleUpdateCondominio() {
         Condominio seleccionado = tvCondominios.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Debe seleccionar un condominio de la tabla.");
+            sceneManager.showAlert("Condominio no seleccionado", "Advertencia", "Debe seleccionar un condominio de la tabla", Alert.AlertType.WARNING);
             return;
         }
 
@@ -97,14 +87,19 @@ public class CondominioController implements Initializable {
     @FXML
     private void handleSaveCondominio() {
         try {
-            String nombre = txtNombre.getText();
-            String direccion = txtDireccion.getText();
-            String telefono = txtTelefono.getText();
+            String nombre = txtNombre.getText().trim();
+            String direccion = txtDireccion.getText().trim();
+            String telefono = txtTelefono.getText().trim();
+
+            if (telefono.length() != 8) {
+                sceneManager.showAlert("Teléfono inválido", "Advertencia", "El teléfono debe contener exactamente 8 números.", Alert.AlertType.WARNING);
+                return;
+            }
 
             if (condominioSeleccionado == null) {
                 Condominio nuevo = new Condominio(0, nombre, direccion, telefono);
                 if (condominioService.registrarCondominio(nuevo)) {
-                    mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Condominio guardado correctamente.");
+                    sceneManager.showAlert("Guardado", "Éxito", "Condominio guardado correctamente", Alert.AlertType.INFORMATION);
                 }
             } else {
                 condominioSeleccionado.setNombre(nombre);
@@ -112,7 +107,7 @@ public class CondominioController implements Initializable {
                 condominioSeleccionado.setTelefono(telefono);
 
                 if (condominioService.modificarCondominio(condominioSeleccionado)) {
-                    mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Condominio actualizado correctamente.");
+                    sceneManager.showAlert("Actualizado", "Éxito", "Condominio actualizado correctamente", Alert.AlertType.INFORMATION);
                 }
             }
 
@@ -121,9 +116,9 @@ public class CondominioController implements Initializable {
             limpiarFormulario();
 
         } catch (IllegalArgumentException e) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Validación", e.getMessage());
+            sceneManager.showAlert("Verifique los campos ingresados", "Advertencia", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Error", "Ocurrió un error al guardar: " + e.getMessage());
+            sceneManager.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar", Alert.AlertType.ERROR);
         }
     }
 
@@ -131,33 +126,72 @@ public class CondominioController implements Initializable {
     private void handleDeleteCondominio() {
         Condominio seleccionado = tvCondominios.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
-            mostrarAlerta(Alert.AlertType.WARNING, "Atención", "Debe seleccionar un condominio para eliminar.");
+            sceneManager.showAlert("Condominio no seleccionado", "Advertencia", "Debe seleccionar un condominio para eliminar", Alert.AlertType.WARNING);
             return;
         }
 
-        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Desea eliminar el condominio: " + seleccionado.getNombre() + "?", ButtonType.YES, ButtonType.NO);
-        confirmacion.setTitle("Confirmar eliminación");
-        confirmacion.setHeaderText(null);
-        
-        confirmacion.showAndWait().ifPresent(respuesta -> {
-            if (respuesta == ButtonType.YES) {
-                try {
-                    if (condominioService.eliminarCondominio(seleccionado)) {
-                        mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Condominio eliminado correctamente.");
-                        cargarTabla();
-                        mostrarFormulario(false);
-                    }
-                } catch (Exception e) {
-                    mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo eliminar el condominio: " + e.getMessage());
+        boolean confirmado = sceneManager.showConfirmation(
+                "Confirmar eliminación",
+                "Eliminación de Condominio",
+                "¿Desea eliminar el condominio: " + seleccionado.getNombre() + "?"
+        );
+
+        if (confirmado) {
+            try {
+                if (condominioService.eliminarCondominio(seleccionado)) {
+                    sceneManager.showAlert("Eliminación completada", "Éxito", "Condominio eliminado correctamente.", Alert.AlertType.INFORMATION);
+                    cargarTabla();
+                    mostrarFormulario(false);
                 }
+            } catch (Exception e) {
+                sceneManager.showAlert("Error al eliminar", "Error", "No se pudo eliminar el condominio: " + e.getMessage(), Alert.AlertType.ERROR);
             }
-        });
+        }
     }
 
     @FXML
     private void handleCancel() {
         mostrarFormulario(false);
         limpiarFormulario();
+    }
+
+    @FXML
+    private void handleGoToMainMenu() {
+        sceneManager.showMainMenuView();
+    }
+
+    @FXML
+    private void handleGoToLoginView() {
+        sceneManager.showLoginView();
+    }
+
+    private void configurarTabla() {
+        tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tcDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+        tcTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+    }
+
+    private void configurarValidacionTelefono() {
+        txtTelefono.setTextFormatter(new TextFormatter<>(change
+                -> change.getControlNewText().matches("\\d{0,8}") ? change : null
+        ));
+    }
+
+    private void ocultarPanelDatosInicial() {
+        panelDatos.setVisible(false);
+        panelDatos.setManaged(false);
+        panelDatos.setPrefWidth(0);
+        panelDatos.setMinWidth(0);
+        panelDatos.setMaxWidth(0);
+    }
+
+    private void cargarTabla() {
+        try {
+            ObservableList<Condominio> lista = condominioService.listarCondominios();
+            tvCondominios.setItems(lista);
+        } catch (Exception e) {
+            sceneManager.showAlert("Error de carga", "Error", "No se pudieron cargar los condominios", Alert.AlertType.ERROR);
+        }
     }
 
     private void mostrarFormulario(boolean mostrar) {
@@ -192,13 +226,5 @@ public class CondominioController implements Initializable {
         txtDireccion.clear();
         txtTelefono.clear();
         condominioSeleccionado = null;
-    }
-
-    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
     }
 }

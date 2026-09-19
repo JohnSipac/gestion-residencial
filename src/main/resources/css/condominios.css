@@ -41,12 +41,16 @@
 
 .button-secundary {
     -fx-background-color: #EE6C4D;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 10px;
     -fx-cursor: hand;
 }
 
-.button-secundary {
-    -fx-alignment: CENTER-LEFT;
+.button-secundary:hover {
+    -fx-background-color: #D95A3C;
+}
+
+.button-secundary:pressed {
+    -fx-background-color: #BF482C;
 }
 
 .button-delete {
@@ -84,6 +88,12 @@
 }
 
 .banner-container {
+    -fx-background-color: #EE6C4D;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.08), 15, 0, 0, 4);
+}
+
+.bar-container {
     -fx-background-color: #EE6C4D;
     -fx-background-radius: 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.08), 15, 0, 0, 4);
@@ -178,5 +188,10 @@
 /* Texto de ayuda (Prompt Text) */
 .text-field .text {
     -fx-prompt-text-fill: #90A4AE;
+}
+
+.tooltip {
+    -fx-show-delay: 0ms;
+    -fx-hide-delay: 0ms;
 }
 

@@ -9,8 +9,8 @@ public class CondominioService {
     
     private final CondominioRepository condominioRepository;
 
-    public CondominioService() {
-        this.condominioRepository = new CondominioRepository();
+    public CondominioService(CondominioRepository condominioRepository) {
+        this.condominioRepository = condominioRepository;
     }
 
     public ObservableList<Condominio> listarCondominios() {
@@ -21,26 +21,21 @@ public class CondominioService {
         }
     }
 
-    public boolean registrarCondominio(Condominio condominio) throws Exception {
-        
+    public boolean registrarCondominio(Condominio condominio) throws Exception {        
         if (condominio.getNombre().trim().isEmpty() || condominio.getDireccion().trim().isEmpty() || condominio.getTelefono().trim().isEmpty()) {
             throw new IllegalArgumentException("Hay campos vacíos");
-        }
-        
+        }      
         return condominioRepository.createCondominio(condominio);
     }
 
     public boolean modificarCondominio(Condominio condominio) throws Exception {
-        if (condominio.getIdCondominio() <= 0) {
-            throw new IllegalArgumentException("ID de condominio inválido para actualizar.");
+        if (condominio.getNombre().trim().isEmpty() || condominio.getDireccion().trim().isEmpty() || condominio.getTelefono().trim().isEmpty()) {
+            throw new IllegalArgumentException("Hay campos vacíos");
         }
         return condominioRepository.updateCondominio(condominio);
     }
 
     public boolean eliminarCondominio(Condominio condominio) throws Exception {
-        if (condominio == null || condominio.getIdCondominio() <= 0) {
-            throw new IllegalArgumentException("Debe seleccionar un condominio válido para eliminar.");
-        }
         return condominioRepository.deleteCondominio(condominio);
     }
     
