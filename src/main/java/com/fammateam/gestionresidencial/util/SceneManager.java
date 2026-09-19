@@ -12,10 +12,13 @@ import main.java.com.fammateam.gestionresidencial.controller.CondominioControlle
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
+import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
+import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
+import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
 
 public class SceneManager {
@@ -111,6 +114,17 @@ public class SceneManager {
                 CondominioRepository condominioRepository = new CondominioRepository();
                 CondominioService condominioService = new CondominioService(condominioRepository);
                 return new CondominioController(this, condominioService);
+            }
+            return null;
+        });
+    }
+    
+    public void showResidenteView(){
+        loadView("gestion-residentes-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
+            if (clazz == ResidenteController.class) {
+                ResidenteRepository residenteRepository = new ResidenteRepository();
+                ResidenteService residenteService = new ResidenteService(residenteRepository);
+                return new ResidenteController(this, residenteService);
             }
             return null;
         });
