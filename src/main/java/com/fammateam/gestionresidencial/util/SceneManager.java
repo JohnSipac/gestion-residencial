@@ -8,18 +8,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
 import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
+import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
+import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
-
 
 public class SceneManager {
 
@@ -33,6 +35,7 @@ public class SceneManager {
     //Metodo para poder sobreescribir el FXMLLoader y el setControllerFactory en cada método
     @FunctionalInterface
     public interface ControllerFactory {
+
         Object create(Class<?> clazz);
     }
 
@@ -98,8 +101,8 @@ public class SceneManager {
             return null;
         });
     }
-    
-    public void showMainMenuView(){
+
+    public void showMainMenuView() {
         loadView("main-menu-view.fxml", "Gestion Residencial - Menú Principal", clazz -> {
             if (clazz == MainMenuController.class) {
                 return new MainMenuController(this);
@@ -107,8 +110,8 @@ public class SceneManager {
             return null;
         });
     }
-    
-    public void showCondominioView(){
+
+    public void showCondominioView() {
         loadView("gestion-condominios-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
             if (clazz == CondominioController.class) {
                 CondominioRepository condominioRepository = new CondominioRepository();
@@ -118,8 +121,8 @@ public class SceneManager {
             return null;
         });
     }
-    
-    public void showResidenteView(){
+
+    public void showResidenteView() {
         loadView("gestion-residentes-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
             if (clazz == ResidenteController.class) {
                 ResidenteRepository residenteRepository = new ResidenteRepository();
@@ -129,16 +132,28 @@ public class SceneManager {
             return null;
         });
     }
-    
-    public boolean showConfirmation(String header, String title, String content) {
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.initOwner(this.primaryStage);
-    alert.setTitle(title);
-    alert.setHeaderText(header);
-    alert.setContentText(content);
 
-    Optional<ButtonType> result = alert.showAndWait();
-    return result.isPresent() && result.get() == ButtonType.OK;
-}
+    public boolean showConfirmation(String header, String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.initOwner(this.primaryStage);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    public void showAreaComunView() {
+        loadView("area-comun-view.fxml", "Gestion Residencial - Gestión de Areas Comunes", clazz -> {
+            if (clazz == AreaComunController.class) {
+                AreaComunRepository areaComunRepository = new AreaComunRepository();
+                CondominioRepository condominioRepository = new CondominioRepository();
+                AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
+                return new AreaComunController(areaComunService, this);
+            }
+            return null;
+        });
+    }
 
 }
