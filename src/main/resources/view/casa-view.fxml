@@ -48,10 +48,10 @@
                         <Insets right="10.0" />
                     </BorderPane.margin>
                     <children>
-                        <Button mnemonicParsing="false" styleClass="button-secundary">
+                        <Button mnemonicParsing="false" onAction="#handleGoToMainMenu" styleClass="button-secundary">
                             <tooltip><Tooltip text="Menú Principal" /></tooltip>
                             <graphic>
-                                <ImageView fx:id="handleGoToMainMenu" fitHeight="25.0" fitWidth="25.0">
+                                <ImageView fitHeight="25.0" fitWidth="25.0">
                                     <image><Image url="@../images/menu-principal.png" /></image>
                                 </ImageView>
                             </graphic>
@@ -113,7 +113,7 @@
                             </graphic>
                         </Button>
                         <Region VBox.vgrow="ALWAYS" />
-                        <Button fx:id="handleGoToLoginView" mnemonicParsing="false" styleClass="button-secundary">
+                        <Button mnemonicParsing="false" onAction="#handleGoToLoginView" styleClass="button-secundary">
                             <tooltip><Tooltip text="Cerrar Sesión" /></tooltip>
                             <graphic>
                                 <ImageView fitHeight="25.0" fitWidth="25.0">
@@ -145,14 +145,14 @@
                         </TableView>
                         <HBox alignment="CENTER_LEFT" spacing="15.0">
                            <children>
-                              <Button fx:id="handleCreateCasa" mnemonicParsing="false" styleClass="button-primary" text="Crear">
+                              <Button mnemonicParsing="false" onAction="#handleCreateCasa" styleClass="button-primary" text="Crear">
                                  <graphic>
                                     <ImageView fitHeight="16.0" fitWidth="16.0">
                                        <image><Image url="@../images/crear.png" /></image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="handleUpdateCasa" mnemonicParsing="false" styleClass="button-primary" text="Actualizar">
+                              <Button mnemonicParsing="false" onAction="#handleUpdateCasa" styleClass="button-primary" text="Actualizar">
                                  <graphic>
                                     <ImageView fitHeight="16.0" fitWidth="16.0">
                                        <image><Image url="@../images/actualizar.png" /></image>
@@ -160,7 +160,7 @@
                                  </graphic>
                               </Button>
                               <Region HBox.hgrow="ALWAYS" />
-                              <Button fx:id="handleDeleteCasa" mnemonicParsing="false" styleClass="button-delete" text="Eliminar">
+                              <Button mnemonicParsing="false" onAction="#handleDeleteCasa" styleClass="button-delete" text="Eliminar">
                                  <graphic>
                                     <ImageView fitHeight="16.0" fitWidth="16.0">
                                        <image><Image url="@../images/borrar.png" /></image>
@@ -175,7 +175,7 @@
             
             <!-- RIGHT: Panel de Formulario (Datos de la casa) -->
             <right>
-                <VBox fx:id="ocultarPanelDatosInicial" prefWidth="280.0" spacing="10.0" styleClass="card-container" BorderPane.alignment="CENTER">
+                <VBox fx:id="panelDatos" prefWidth="280.0" spacing="10.0" styleClass="card-container" BorderPane.alignment="CENTER">
                     <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                     </padding>
@@ -194,14 +194,14 @@
                         <Region VBox.vgrow="ALWAYS" />
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
-                              <Button fx:id="handleSaveCasa" mnemonicParsing="false" styleClass="button-primary" text="Guardar" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" onAction="#handleSaveCasa" styleClass="button-primary" text="Guardar" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="14.0" fitWidth="14.0">
                                        <image><Image url="@../images/guardar.png" /></image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="handleCancel" mnemonicParsing="false" styleClass="button-delete" text="Cancelar" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" onAction="#handleCancel" styleClass="button-delete" text="Cancelar" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="14.0" fitWidth="14.0">
                                        <image><Image url="@../images/cancelar.png" /></image>

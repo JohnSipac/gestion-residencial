@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import main.java.com.fammateam.gestionresidencial.model.Casa;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
@@ -47,7 +48,7 @@ public class CasaController implements Initializable {
     @FXML
     private ComboBox<String> cmbCondominio;
     @FXML
-    private AnchorPane panelDatos;
+    private VBox panelDatos;
     @FXML
     private TextField txtIdCondominio;
     @FXML
@@ -95,7 +96,7 @@ public class CasaController implements Initializable {
     @FXML
     private void handleSaveCasa() {
         try {
-            int idCondominio = Integer.parseInt(txtIdCondominio.getText().trim());
+            int idCondominio = Integer.parseInt(cmbCondominio.getValue());
             String numeroCasa = txtNumeroCasa.getText().trim();
             double aliquota = Double.parseDouble(txtAliquota.getText().trim());
 
@@ -210,7 +211,7 @@ public class CasaController implements Initializable {
     }
 
     private void limpiarFormulario() {
-        txtIdCondominio.clear();
+        cmbCondominio.getSelectionModel().clearSelection();
         txtNumeroCasa.clear();
         txtAliquota.clear();
         casaSelect = null;
