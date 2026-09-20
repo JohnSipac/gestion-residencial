@@ -1,6 +1,7 @@
 package main.java.com.fammateam.gestionresidencial.model;
 
 public class Condominio {
+
     private int idCondominio;
     private String nombre;
     private String direccion;
@@ -13,9 +14,7 @@ public class Condominio {
         this.telefono = telefono;
     }
 
-    public Condominio(int idCondominio, String nombre) {
-        this.idCondominio = idCondominio;
-        this.nombre = nombre;
+    public Condominio() {
     }
 
     public int getIdCondominio() {
@@ -34,8 +33,22 @@ public class Condominio {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
+    public String getDireccion() {
+        return direccion;
     }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+    
+    
 }
