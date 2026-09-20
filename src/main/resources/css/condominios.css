@@ -108,7 +108,6 @@
     -fx-padding: 0;
 }
 
-/* Encabezados de las columnas */
 .table-view .column-header-background {
     -fx-background-color: #2C3E50;
     -fx-background-radius: 5px 5px 0 0;
@@ -127,25 +126,21 @@
     -fx-alignment: CENTER;
 }
 
-/* Celdas y filas */
 .table-row-cell {
     -fx-background-color: #FFFFFF;
     -fx-border-color: transparent transparent #F0F0F0 transparent;
     -fx-cell-size: 38px;
 }
 
-/* Filas alternas (Efecto Zebra) */
 .table-row-cell:odd {
     -fx-background-color: #FCFCFA;
 }
 
-/* Estado Hover (al pasar el cursor sobre una fila) */
 .table-row-cell:hover {
     -fx-background-color: #F5F7FA;
     -fx-cursor: hand;
 }
 
-/* Fila seleccionada */
 .table-row-cell:filled:selected {
     -fx-background-color: #FDECE8;
 }
@@ -155,7 +150,6 @@
     -fx-font-weight: bold;
 }
 
-/* Espacio vacío a la derecha del encabezado en el mismo azul oscuro */
 .table-view .filler {
     -fx-background-color: #2C3E50;
 }
@@ -171,12 +165,10 @@
     -fx-padding: 8px 16px;
 }
 
-/* Estado Hover (al pasar el cursor) */
 .text-field:hover {
     -fx-border-color: #34495E;
 }
 
-/* Estado Focused (al hacer clic/escribir) */
 .text-field:focused {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #2C3E50;
@@ -185,7 +177,6 @@
     -fx-focus-color: #2C3E50;
 }
 
-/* Texto de ayuda (Prompt Text) */
 .text-field .text {
     -fx-prompt-text-fill: #90A4AE;
 }

@@ -116,9 +116,9 @@ public class CondominioController implements Initializable {
             limpiarFormulario();
 
         } catch (IllegalArgumentException e) {
-            sceneManager.showAlert("Verifique los campos ingresados", "Advertencia", e.getMessage(), Alert.AlertType.WARNING);
+            sceneManager.showAlert("Advertencia", "Verifique los datos", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            sceneManager.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar", Alert.AlertType.ERROR);
+            sceneManager.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -162,7 +162,24 @@ public class CondominioController implements Initializable {
 
     @FXML
     private void handleGoToLoginView() {
-        sceneManager.showLoginView();
+        boolean confirmado = sceneManager.showConfirmation(
+                "Confirmar cierre de sesión",
+                "Cerrar Sesión",
+                "¿Desea cerrar sesión?"
+        );
+        if (confirmado) {
+            sceneManager.showLoginView();
+        }
+    }
+
+    @FXML
+    private void handleGoToResidenteView() {
+        sceneManager.showResidenteView();
+    }
+
+    @FXML
+    private void handleGoToCasaView() {
+        sceneManager.showCasaView();
     }
 
     private void configurarTabla() {

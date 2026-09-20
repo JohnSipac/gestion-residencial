@@ -1,25 +1,34 @@
 package main.java.com.fammateam.gestionresidencial.service;
 
-import java.util.List;
+import javafx.collections.ObservableList;
 import main.java.com.fammateam.gestionresidencial.model.Casa;
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CasaService {
-    
-    private CasaRepository casaRepository;
-    
-    public CasaService(CasaRepository casaRepository){
-    this.casaRepository = casaRepository;
+
+    private final CasaRepository casaRepository;
+
+    public CasaService(CasaRepository casaRepository) {
+        this.casaRepository = casaRepository;
     }
-    
-    public List<Casa> obtenerCasas() throws SQLException{
-    return casaRepository.ListCasas();
+
+    public ObservableList<Casa> listarCasas() {
+        return casaRepository.findAll();
     }
-    
-    public boolean registrarCasa(Casa casa)throws SQLException{ 
-      return casaRepository.createCasa(casa);
+
+    public ObservableList<Casa> listarCasasPorCondominio(String nombreCondominio) {
+        return casaRepository.findCasasByCondominioName(nombreCondominio);
+    }
+
+    public boolean registrarCasa(Casa casa) {
+        return casaRepository.createCasa(casa);
+    }
+
+    public boolean modificarCasa(Casa casa) {
+        return casaRepository.updateCasa(casa);
+    }
+
+    public boolean eliminarCasa(Casa casa) {
+        return casaRepository.deleteCasa(casa);
     }
 }
