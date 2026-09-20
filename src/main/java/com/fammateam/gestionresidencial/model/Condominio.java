@@ -49,6 +49,4 @@ public class Condominio {
         this.telefono = telefono;
     }
     
-    
-    
 }

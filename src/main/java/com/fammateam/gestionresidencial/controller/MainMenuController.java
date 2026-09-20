@@ -65,4 +65,14 @@ public class MainMenuController implements Initializable {
     private void handleAreaComun() {
         sceneManager.showAreaComunView();
     }
+
+    @FXML
+    private void handleCondominio() {
+        sceneManager.showCondominioView();
+    }
+
+    @FXML
+    private void handleResidentes() {
+        sceneManager.showResidenteView();
+    }
 }

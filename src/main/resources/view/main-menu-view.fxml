@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -100,17 +100,46 @@
                                 </VBox>
                             </children>
                         </HBox>  
-                        <VBox fx:id="contentArea" styleClass="card-container" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="contentArea" styleClass="main-content-card" VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                             </padding>
                             <children>
                                 <Label styleClass="title-sub-primary" text="Panel de Control" />
-                        <FlowPane prefHeight="381.0" prefWidth="700.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#handleAreaComun" prefHeight="125.0" prefWidth="156.0" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="AREAS COMUNES" />
-                           </children>
-                        </FlowPane>
+                                <FlowPane hgap="20.0" prefHeight="381.0" prefWidth="700.0" vgap="20.0">
+                                   <children>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleAreaComun" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="ÁREAS COMUNES">
+                                         <graphic>
+                                            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                  <Image url="@../images/areas-comunes.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCondominio" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="CONDOMINIOS">
+                                         <graphic>
+                                            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                  <Image url="@../images/casas.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleResidentes" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="RESIDENTES">
+                                         <graphic>
+                                            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                  <Image url="@../images/residentes.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                   </children>
+                                   <padding>
+                                      <Insets top="20.0" />
+                                   </padding>
+                                </FlowPane>
                             </children>
                         </VBox>
                     </children>
