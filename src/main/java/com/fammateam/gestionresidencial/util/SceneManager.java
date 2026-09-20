@@ -105,7 +105,7 @@ public class SceneManager {
         });
     }
 
-    public void showMainMenuView(){
+    public void showMainMenuView() {
         loadView("main-menu-view.fxml", "Gestion Residencial - Menú Principal", clazz -> {
             if (clazz == MainMenuController.class) {
                 return new MainMenuController(this);
@@ -114,7 +114,7 @@ public class SceneManager {
         });
     }
 
-    public void showCondominioView(){
+    public void showCondominioView() {
         loadView("gestion-condominios-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
             if (clazz == CondominioController.class) {
                 CondominioRepository condominioRepository = new CondominioRepository();
@@ -171,5 +171,4 @@ public class SceneManager {
             return null;
         });
     }
-
 }

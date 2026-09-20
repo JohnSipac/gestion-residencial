@@ -62,6 +62,11 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
+    private void handleCasa() {
+        sceneManager.showCasaView();
+    }
+
+    @FXML
     private void handleAreaComun() {
         sceneManager.showAreaComunView();
     }
@@ -75,4 +80,5 @@ public class MainMenuController implements Initializable {
     private void handleResidentes() {
         sceneManager.showResidenteView();
     }
+
 }
