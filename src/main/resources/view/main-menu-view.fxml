@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -61,7 +62,7 @@
                             </tooltip>
                         </Button>
                         <VBox VBox.vgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#backToLogin" styleClass="icon-button-logout">
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#backToLogin" styleClass="icon-button-logout">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -99,12 +100,46 @@
                                 </VBox>
                             </children>
                         </HBox>  
-                        <VBox fx:id="contentArea" styleClass="card-container" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="contentArea" styleClass="main-content-card" VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                             </padding>
                             <children>
                                 <Label styleClass="title-sub-primary" text="Panel de Control" />
+                                <FlowPane hgap="20.0" prefHeight="381.0" prefWidth="700.0" vgap="20.0">
+                                   <children>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleAreaComun" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="ÁREAS COMUNES">
+                                         <graphic>
+                                            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                  <Image url="@../images/areas-comunes.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCondominio" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="CONDOMINIOS">
+                                         <graphic>
+                                            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                  <Image url="@../images/casas.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleResidentes" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="RESIDENTES">
+                                         <graphic>
+                                            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                  <Image url="@../images/residentes.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                   </children>
+                                   <padding>
+                                      <Insets top="20.0" />
+                                   </padding>
+                                </FlowPane>
                             </children>
                         </VBox>
                     </children>

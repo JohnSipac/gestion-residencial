@@ -9,15 +9,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import main.java.com.fammateam.gestionresidencial.controller.CasaController;
+import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
 import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
+import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
+import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
@@ -122,7 +125,7 @@ public class SceneManager {
         });
     }
 
-    public void showResidenteView(){
+    public void showResidenteView() {
         loadView("gestion-residentes-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
             if (clazz == ResidenteController.class) {
                 ResidenteRepository residenteRepository = new ResidenteRepository();
@@ -155,6 +158,18 @@ public class SceneManager {
 
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    public void showAreaComunView() {
+        loadView("area-comun-view.fxml", "Gestion Residencial - Gestión de Areas Comunes", clazz -> {
+            if (clazz == AreaComunController.class) {
+                AreaComunRepository areaComunRepository = new AreaComunRepository();
+                CondominioRepository condominioRepository = new CondominioRepository();
+                AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
+                return new AreaComunController(areaComunService, this);
+            }
+            return null;
+        });
     }
 
 }

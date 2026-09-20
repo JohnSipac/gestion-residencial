@@ -61,4 +61,18 @@ public class MainMenuController implements Initializable {
         isExpanded = !isExpanded;
     }
 
+    @FXML
+    private void handleAreaComun() {
+        sceneManager.showAreaComunView();
+    }
+
+    @FXML
+    private void handleCondominio() {
+        sceneManager.showCondominioView();
+    }
+
+    @FXML
+    private void handleResidentes() {
+        sceneManager.showResidenteView();
+    }
 }
