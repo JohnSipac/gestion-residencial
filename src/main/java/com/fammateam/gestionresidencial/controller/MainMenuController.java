@@ -61,4 +61,9 @@ public class MainMenuController implements Initializable {
         isExpanded = !isExpanded;
     }
 
+    @FXML
+    private void handleCasa() {
+        sceneManager.showCasaView();
+    }
+
 }

@@ -87,7 +87,7 @@ public class CasaRepository {
 
     }
 
-    public boolean updateCasa(Casa casa) throws Exception {
+    public boolean updateCasa(Casa casa) throws SQLException {
         boolean actualizado = false;
         String sql = "update casas id_condominio = ?, numero_casa = ?, aliquota = ? where id_casa = ?;";
 
@@ -110,7 +110,7 @@ public class CasaRepository {
 
     }
     
-    public boolean deleteCasa(Casa casa) throws Exception {
+    public boolean deleteCasa(Casa casa) throws SQLException {
         boolean eliminado = false;
         String sql = "delete from casas where id_casas = ?";
  

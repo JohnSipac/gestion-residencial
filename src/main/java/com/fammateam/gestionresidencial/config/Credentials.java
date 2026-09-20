@@ -6,7 +6,7 @@ public class Credentials {
     public static final String USER_DB = System.getenv("DB_USER");
     public static final String PASS_DB = System.getenv("DB_PASS");*/
     public static final String URL_DB = "jdbc:mysql://localhost:3306/gestion_residencial_in4bm";
-    public static final String PASS_DB = "$DmynM4A";
-    public static final String USER_DB = "IN4BM";
+    public static final String PASS_DB = "Fausto_MO_512";
+    public static final String USER_DB = "root";
 
 }

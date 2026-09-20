@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -73,6 +73,18 @@
                                 <Tooltip text="Cerrar Sesión" />
                             </tooltip>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#handleCasa" styleClass="icon-button-active">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Inicio" />
+                     </tooltip>
+                  </Button>
                     </children>
                 </VBox>
             </left>
