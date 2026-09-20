@@ -49,6 +49,9 @@ public class ResidenteRepository {
             return pstm.executeUpdate() > 0;
 
         } catch (SQLException e) {
+            if (e.getErrorCode() == 1062 || e.getMessage().contains("Duplicate entry")) {
+                throw new IllegalArgumentException("Ya existe el correo: " + residente.getEmail());
+            }
             System.out.println("Error al crear residente: " + e.getMessage());
             return false;
         }
@@ -66,7 +69,11 @@ public class ResidenteRepository {
             pstm.setInt(6, residente.getIdResidente());
 
             return pstm.executeUpdate() > 0;
+
         } catch (SQLException e) {
+            if (e.getErrorCode() == 1062 || e.getMessage().contains("Duplicate entry")) {
+                throw new IllegalArgumentException("Ya existe un residente registrado con el correo: " + residente.getEmail());
+            }
             System.out.println("Error al actualizar residente: " + e.getMessage());
             return false;
         }

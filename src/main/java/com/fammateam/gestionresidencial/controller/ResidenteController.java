@@ -119,8 +119,8 @@ public class ResidenteController implements Initializable {
 
             if (residenteSeleccionado == null) {
                 Residente nuevo = new Residente(0, nombre, apellido, email, telefono, tipoResidente);
-                if (residenteService.registrarResidentes(nuevo)) {
-                    sceneManager.showAlert("Guardado", "Éxito", "Residente guardado correctamente", Alert.AlertType.INFORMATION);
+                if (residenteService.registrarResidente(nuevo)) {
+                    sceneManager.showAlert("Guardado", "Éxito", "Residente guardado correctamente.", Alert.AlertType.INFORMATION);
                 }
             } else {
                 residenteSeleccionado.setNombre(nombre);
@@ -129,8 +129,8 @@ public class ResidenteController implements Initializable {
                 residenteSeleccionado.setTelefono(telefono);
                 residenteSeleccionado.setTipoResidente(tipoResidente);
 
-                if (residenteService.modificarCondominio(residenteSeleccionado)) {
-                    sceneManager.showAlert("Actualizado", "Éxito", "Residente actualizado correctamente", Alert.AlertType.INFORMATION);
+                if (residenteService.modificarResidente(residenteSeleccionado)) {
+                    sceneManager.showAlert("Actualizado", "Éxito", "Residente actualizado correctamente.", Alert.AlertType.INFORMATION);
                 }
             }
 
@@ -141,7 +141,7 @@ public class ResidenteController implements Initializable {
         } catch (IllegalArgumentException e) {
             sceneManager.showAlert("Verifique los campos ingresados", "Advertencia", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            sceneManager.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar el residente", Alert.AlertType.ERROR);
+            sceneManager.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar el residente: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -161,7 +161,7 @@ public class ResidenteController implements Initializable {
 
         if (confirmado) {
             try {
-                if (residenteService.eliminarCondominio(seleccionado)) {
+                if (residenteService.eliminarResidente(seleccionado)) {
                     sceneManager.showAlert("Eliminación completada", "Éxito", "Residente eliminado correctamente.", Alert.AlertType.INFORMATION);
                     cargarTabla();
                     mostrarFormulario(false);
@@ -185,12 +185,24 @@ public class ResidenteController implements Initializable {
 
     @FXML
     private void handleGoToLoginView() {
-        sceneManager.showLoginView();
+        boolean confirmado = sceneManager.showConfirmation(
+                "Confirmar cierre de sesión",
+                "Cerrar Sesión",
+                "¿Desea cerrar sesión?"
+        );
+        if (confirmado) {
+            sceneManager.showLoginView();
+        }
     }
-    
+
     @FXML
     private void handleGoToCondominioView() {
         sceneManager.showCondominioView();
+    }
+
+    @FXML
+    private void handleGoToCasaView() {
+        sceneManager.showCasaView();
     }
 
     private void configurarTabla() {

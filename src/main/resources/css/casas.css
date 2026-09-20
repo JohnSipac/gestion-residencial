@@ -7,20 +7,20 @@
     -fx-background-radius: 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(30,30,30,0.08), 15, 0, 0, 4);
 }
- 
+
 .title-primary {
     -fx-font-size: 25px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
- 
+
 .subtitle {
     -fx-font-size: 16px;
     -fx-text-fill: #2C3E50;
     -fx-font-weight: bold;
 }
 
- 
+
 .button-primary {
     -fx-background-color: #2C3E50;
     -fx-background-radius: 20px;
@@ -74,11 +74,11 @@
     -fx-background-radius: 8px;
     -fx-padding: 3px;
 }
- 
+
 .custom-combo .cell {
     -fx-text-fill: #1E1E1E;
 }
- 
+
 .custom-combo:focused {
     -fx-background-color: #FFFFFF;
     -fx-border-color: #EE6C4D;
@@ -273,4 +273,23 @@
 .combo-box-popup .list-view .list-cell:filled:selected:hover {
     -fx-background-color: #34495E;
     -fx-text-fill: #FFFFFF;
+}
+
+.label-encabezado {
+    -fx-background-color: #2C3E50;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-padding: 5px 10px;
+}
+
+.label-datos {
+    -fx-background-color: #F0F2F5;
+    -fx-border-color: #BDC3C7;
+    -fx-border-width: 1px;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-padding: 5px 10px;
 }

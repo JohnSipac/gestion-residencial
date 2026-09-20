@@ -8,18 +8,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import main.java.com.fammateam.gestionresidencial.controller.CasaController;
 import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
 import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
+import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
+import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
@@ -102,7 +105,7 @@ public class SceneManager {
         });
     }
 
-    public void showMainMenuView() {
+    public void showMainMenuView(){
         loadView("main-menu-view.fxml", "Gestion Residencial - Menú Principal", clazz -> {
             if (clazz == MainMenuController.class) {
                 return new MainMenuController(this);
@@ -111,7 +114,7 @@ public class SceneManager {
         });
     }
 
-    public void showCondominioView() {
+    public void showCondominioView(){
         loadView("gestion-condominios-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
             if (clazz == CondominioController.class) {
                 CondominioRepository condominioRepository = new CondominioRepository();
@@ -128,6 +131,19 @@ public class SceneManager {
                 ResidenteRepository residenteRepository = new ResidenteRepository();
                 ResidenteService residenteService = new ResidenteService(residenteRepository);
                 return new ResidenteController(this, residenteService);
+            }
+            return null;
+        });
+    }
+
+    public void showCasaView() {
+        loadView("gestion-casas-view.fxml", "Gestion Residencial - Gestión de Casas", clazz -> {
+            if (clazz == CasaController.class) {
+                CondominioRepository condominioResposotory = new CondominioRepository();
+                CondominioService condominioService = new CondominioService(condominioResposotory);
+                CasaRepository casaRepository = new CasaRepository();
+                CasaService casaService = new CasaService(casaRepository);
+                return new CasaController(this, condominioService, casaService);
             }
             return null;
         });

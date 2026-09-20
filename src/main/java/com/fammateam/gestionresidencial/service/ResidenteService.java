@@ -21,21 +21,21 @@ public class ResidenteService {
         }
     }
 
-    public boolean registrarResidentes(Residente residente) throws Exception {        
+    public boolean registrarResidente(Residente residente) throws Exception {        
         if (residente.getNombre().trim().isEmpty() || residente.getApellido().trim().isEmpty() || residente.getEmail().trim().isEmpty() || residente.getTelefono().trim().isEmpty() || residente.getTipoResidente().trim().isEmpty()) {
             throw new IllegalArgumentException("Hay campos vacíos");
         }      
         return residenteRepository.createResidente(residente);
     }
 
-    public boolean modificarCondominio(Residente residente) throws Exception {
+    public boolean modificarResidente(Residente residente) throws Exception {
         if (residente.getNombre().trim().isEmpty() || residente.getApellido().trim().isEmpty() || residente.getEmail().trim().isEmpty() || residente.getTelefono().trim().isEmpty() || residente.getTipoResidente().trim().isEmpty()) {
             throw new IllegalArgumentException("Hay campos vacíos");
         }
         return residenteRepository.updateResidente(residente);
     }
 
-    public boolean eliminarCondominio(Residente residente) throws Exception {
+    public boolean eliminarResidente(Residente residente) throws Exception {
         return residenteRepository.deleteResidente(residente);
     }
     

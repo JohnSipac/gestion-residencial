@@ -6,7 +6,7 @@ import main.java.com.fammateam.gestionresidencial.repository.CondominioRepositor
 import java.sql.SQLException;
 
 public class CondominioService {
-    
+
     private final CondominioRepository condominioRepository;
 
     public CondominioService(CondominioRepository condominioRepository) {
@@ -21,10 +21,10 @@ public class CondominioService {
         }
     }
 
-    public boolean registrarCondominio(Condominio condominio) throws Exception {        
+    public boolean registrarCondominio(Condominio condominio) throws Exception {
         if (condominio.getNombre().trim().isEmpty() || condominio.getDireccion().trim().isEmpty() || condominio.getTelefono().trim().isEmpty()) {
             throw new IllegalArgumentException("Hay campos vacíos");
-        }      
+        }
         return condominioRepository.createCondominio(condominio);
     }
 
@@ -38,5 +38,12 @@ public class CondominioService {
     public boolean eliminarCondominio(Condominio condominio) throws Exception {
         return condominioRepository.deleteCondominio(condominio);
     }
-    
+
+    public ObservableList<String> encontrarNombres() {
+        return condominioRepository.findNames();
+    }
+
+    public Condominio obtenerCondominioPorNombre(String nombre) {
+        return condominioRepository.findCondominioByName(nombre);
+    }
 }
