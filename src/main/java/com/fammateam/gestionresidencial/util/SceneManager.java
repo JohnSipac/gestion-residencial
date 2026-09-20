@@ -1,16 +1,24 @@
 package main.java.com.fammateam.gestionresidencial.util;
 
 import java.io.IOException;
+import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
+import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
+import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
+import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
+import main.java.com.fammateam.gestionresidencial.service.CondominioService;
+import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
 
 public class SceneManager {
@@ -99,5 +107,38 @@ public class SceneManager {
             return null;
         });
     }
+    
+    public void showCondominioView(){
+        loadView("gestion-condominios-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
+            if (clazz == CondominioController.class) {
+                CondominioRepository condominioRepository = new CondominioRepository();
+                CondominioService condominioService = new CondominioService(condominioRepository);
+                return new CondominioController(this, condominioService);
+            }
+            return null;
+        });
+    }
+    
+    public void showResidenteView(){
+        loadView("gestion-residentes-view.fxml", "Gestion Residencial - Gestión de Condominios", clazz -> {
+            if (clazz == ResidenteController.class) {
+                ResidenteRepository residenteRepository = new ResidenteRepository();
+                ResidenteService residenteService = new ResidenteService(residenteRepository);
+                return new ResidenteController(this, residenteService);
+            }
+            return null;
+        });
+    }
+    
+    public boolean showConfirmation(String header, String title, String content) {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.initOwner(this.primaryStage);
+    alert.setTitle(title);
+    alert.setHeaderText(header);
+    alert.setContentText(content);
+
+    Optional<ButtonType> result = alert.showAndWait();
+    return result.isPresent() && result.get() == ButtonType.OK;
+}
 
 }
