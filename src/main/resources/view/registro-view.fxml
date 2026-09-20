@@ -40,7 +40,7 @@
                      </children>
                   </StackPane>
                   
-                  <Label styleClass="title-primary" text="Gestión Residencial" />
+                  <Label styleClass="title-sub-primary" text="Gestión Residencial" />
                   <Label styleClass="subtitle-brand" text="Crea una cuenta para acceder a la plataforma de administración" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
@@ -91,7 +91,7 @@
                   <VBox spacing="6.0">
                      <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRegistrar" styleClass="button-primary" text="Registrar Cuenta" />
-                        <Button alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleVolverLogin" styleClass="button-secondary" text="¿Ya tienes cuenta? Inicia sesión" />
+                        <Button alignment="CENTER" cancelButton="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleVolverLogin" styleClass="button-secondary" text="¿Ya tienes cuenta? Inicia sesión" />
                      </children>
                   </VBox>
                </children>

@@ -1,6 +1,6 @@
 package main.java.com.fammateam.gestionresidencial.service;
 
-import java.util.List;
+import javafx.collections.ObservableList;
 import main.java.com.fammateam.gestionresidencial.model.Casa;
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
 import java.sql.SQLException;

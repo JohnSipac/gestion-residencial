@@ -1,94 +1,154 @@
 package main.java.com.fammateam.gestionresidencial.controller;
 
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import main.java.com.fammateam.gestionresidencial.model.Casa;
+import main.java.com.fammateam.gestionresidencial.model.Condominio;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
+import main.java.com.fammateam.gestionresidencial.service.CondominioService;
 import main.java.com.fammateam.gestionresidencial.util.SceneManager;
 
 public class CasaController implements Initializable {
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        confiTabla();
-        ocultarPanelDatosInicial();
-        cargarTabla();
-    }
-
     private SceneManager stage;
     private CasaService casaService;
-    private Casa casaSelect;
+    private Casa casaSeleccionada;
+    private CondominioService condominioService;
+    private Condominio condominioSeleccionado;
 
     @FXML
     private TableView<Casa> tvCasas;
     @FXML
-    private TableColumn<Casa, String> tvColumnIdCondominio;
+    private TableColumn<Casa, String> tcNumeroCasa;
     @FXML
-    private TableColumn<Casa, String> tvColumnNumeroCasa;
+    private TableColumn<Casa, Double> tcAlicuota;
     @FXML
-    private TableColumn<Casa, Double> tvColumnAliquota;
-    @FXML
-    private ComboBox<String> cmbCondominio;
-    @FXML
-    private VBox panelDatos;
-    @FXML
-    private TextField txtIdCondominio;
+    private AnchorPane panelDatos;
     @FXML
     private TextField txtNumeroCasa;
     @FXML
-    private TextField txtAliquota;
+    private TextField txtAlicuota;
+    @FXML
+    private ComboBox<String> cmbCondominio;
+    @FXML
+    private ComboBox<String> cmbCondominios;
+    @FXML
+    private Label lblDatos;
+    @FXML
+    private HBox hbDatosCondominio;
+    @FXML
+    private Label lblCasas;
+    @FXML
+    private Label lblDireccion;
+    @FXML
+    private Label lblTelefono;
     @FXML
     private Button btnMainMenu;
 
-    public CasaController(CasaService casaService, SceneManager stage) {
-        this.casaService = casaService;
+    public CasaController(SceneManager stage, CondominioService condominioService, CasaService casaService) {
         this.stage = stage;
+        this.condominioService = condominioService;
+        this.casaService = casaService;
     }
 
-    private void confiTabla() {
-        tvColumnIdCondominio.setCellValueFactory(new PropertyValueFactory<>("idCondominio"));
-        tvColumnNumeroCasa.setCellValueFactory(new PropertyValueFactory<>("numeroCasa"));
-        tvColumnAliquota.setCellValueFactory(new PropertyValueFactory<>("aliquota"));
-        tvCasas.setItems(FXCollections.observableArrayList(casaService.listaCasa()));
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        configurarColumnasTabla();
+        cargarDatosComboBox();
+        configurarListeners();
+        configurarValidacionAlicuota();
+        ocultarPanelDatosInicial();
     }
 
+    // --- Métodos de Configuración Inicial (Buenas Prácticas) ---
+    private void configurarColumnasTabla() {
+        tcNumeroCasa.setCellValueFactory(new PropertyValueFactory<>("numeroCasa"));
+        tcAlicuota.setCellValueFactory(new PropertyValueFactory<>("aliquota"));
+    }
+
+    private void cargarDatosComboBox() {
+        ObservableList<String> opciones = condominioService.encontrarNombres();
+        cmbCondominio.setItems(opciones);
+        cmbCondominios.setItems(opciones);
+    }
+
+    private void configurarListeners() {
+        cmbCondominio.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                cargarVistaPorCondominio(newVal);
+            }
+        });
+
+        tvCasas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                casaSeleccionada = newSelection;
+            }
+        });
+    }
+
+    // --- Lógica de la Vista ---
+    private void cargarVistaPorCondominio(String nombreCondominio) {
+        Condominio cond = condominioService.obtenerCondominioPorNombre(nombreCondominio);
+        if (cond != null) {
+            condominioSeleccionado = cond;
+            lblDireccion.setText(cond.getDireccion());
+            lblTelefono.setText(cond.getTelefono());
+
+            mostrarElementosCentrales(true);
+
+            ObservableList<Casa> casas = casaService.listaCasa();
+            tvCasas.setItems(casas);
+        }
+    }
+
+    private void mostrarElementosCentrales(boolean visible) {
+        lblDatos.setVisible(visible);
+        hbDatosCondominio.setVisible(visible);
+        lblCasas.setVisible(visible);
+        tvCasas.setVisible(visible);
+    }
+
+    // --- Eventos de Botones (@FXML) ---
     @FXML
     private void handleCreateCasa() {
-        casaSelect = null;
+        casaSeleccionada = null;
         limpiarFormulario();
         mostrarFormulario(true);
     }
 
     @FXML
     private void handleUpdateCasa() {
-        Casa seleccionado = tvCasas.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            stage.showAlert("Casa no seleccionada", "Advertencia", "Debe seleccionar una casa de la tabla", Alert.AlertType.WARNING);
+        Casa seleccionada = tvCasas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            stage.showAlert("Casa no seleccionada", "Advertencia", "Debe seleccionar una casa de la tabla.", Alert.AlertType.WARNING);
             return;
         }
 
-        casaSelect = seleccionado;
-        txtIdCondominio.setText(String.valueOf(seleccionado.getIdCondominio()));
-        txtNumeroCasa.setText(seleccionado.getNumeroCasa());
-        txtAliquota.setText(String.valueOf(seleccionado.getAliquota()));
+        casaSeleccionada = seleccionada;
+        txtNumeroCasa.setText(seleccionada.getNumeroCasa());
+        txtAlicuota.setText(String.valueOf(seleccionada.getAliquota()));
+
+        if (cmbCondominio.getValue() != null) {
+            cmbCondominios.setValue(cmbCondominio.getValue());
+        }
 
         mostrarFormulario(true);
     }
@@ -96,62 +156,92 @@ public class CasaController implements Initializable {
     @FXML
     private void handleSaveCasa() {
         try {
-            int idCondominio = Integer.parseInt(cmbCondominio.getValue());
             String numeroCasa = txtNumeroCasa.getText().trim();
-            double aliquota = Double.parseDouble(txtAliquota.getText().trim());
+            String alicuotaStr = txtAlicuota.getText().trim();
+            String condominioNombre = cmbCondominios.getValue();
 
-            if (numeroCasa.isEmpty()) {
-                stage.showAlert("Campo vacío", "Advertencia", "El número de casa no puede estar vacío.", Alert.AlertType.WARNING);
+            if (numeroCasa.isEmpty() || alicuotaStr.isEmpty()) {
+                stage.showAlert("Campos vacíos", "Advertencia", "Por favor llene todos los campos obligatorios.", Alert.AlertType.WARNING);
                 return;
             }
 
-            if (casaSelect == null) {
-                Casa nueva = new Casa(0, idCondominio, numeroCasa, aliquota);
-                if (casaService.registrarCasa(nueva)) {
-                    stage.showAlert("Guardado", "Éxito", "Casa guardada correctamente", Alert.AlertType.INFORMATION);
+            if (condominioNombre == null || condominioNombre.isEmpty()) {
+                stage.showAlert("Sin Condominio", "Advertencia", "Debe seleccionar un condominio en el formulario.", Alert.AlertType.WARNING);
+                return;
+            }
+
+            Condominio cond = condominioService.obtenerCondominioPorNombre(condominioNombre);
+            if (cond == null) {
+                stage.showAlert("Error de Condominio", "Error", "No se encontró el condominio seleccionado.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            double aliquota = Double.parseDouble(alicuotaStr);
+
+            if (aliquota < 0.0 || aliquota >= 10.0) {
+                stage.showAlert(
+                        "Alícuota fuera de rango",
+                        "Valor no permitido",
+                        "La alícuota debe ser un valor entre 0.0000 y 9.9999",
+                        Alert.AlertType.WARNING
+                );
+                return;
+            }
+
+            if (casaSeleccionada == null) {
+                Casa nuevaCasa = new Casa(0, cond.getIdCondominio(), numeroCasa, aliquota);
+                if (casaService.registrarCasa(nuevaCasa)) {
+                    stage.showAlert("Guardado", "Éxito", "Casa registrada correctamente.", Alert.AlertType.INFORMATION);
                 }
             } else {
-                casaSelect.setIdCondominio(idCondominio);
-                casaSelect.setNumeroCasa(numeroCasa);
-                casaSelect.setAliquota(aliquota);
+                casaSeleccionada.setNumeroCasa(numeroCasa);
+                casaSeleccionada.setAliquota(aliquota);
+                casaSeleccionada.setIdCondominio(cond.getIdCondominio());
 
-                if (casaService.actualizarCasa(casaSelect)) {
-                    stage.showAlert("Actualizado", "Éxito", "Casa actualizada correctamente", Alert.AlertType.INFORMATION);
+                if (casaService.actualizarCasa(casaSeleccionada)) {
+                    stage.showAlert("Actualizado", "Éxito", "Casa actualizada correctamente.", Alert.AlertType.INFORMATION);
                 }
             }
-            cargarTabla();
+
             mostrarFormulario(false);
             limpiarFormulario();
 
+            cmbCondominio.setValue(condominioNombre);
+            cargarVistaPorCondominio(condominioNombre);
+
         } catch (NumberFormatException e) {
-            stage.showAlert("Datos numéricos inválidos", "Advertencia", "Verifique que el ID de condominio y la alícuota sean números correctos.", Alert.AlertType.WARNING);
+            stage.showAlert("Valor inválido", "Advertencia", "Ingrese un valor numérico válido para la alícuota.", Alert.AlertType.WARNING);
         } catch (IllegalArgumentException e) {
-            stage.showAlert("Verifique los campos ingresados", "Advertencia", e.getMessage(), Alert.AlertType.WARNING);
+            stage.showAlert("Datos inválidos", "Advertencia", e.getMessage(), Alert.AlertType.WARNING);
         } catch (Exception e) {
-            stage.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar: " + e.getMessage(), Alert.AlertType.ERROR);
+            stage.showAlert("Error de guardado", "Error", "Ocurrió un error al guardar la casa: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     private void handleDeleteCasa() {
-        Casa seleccionado = tvCasas.getSelectionModel().getSelectedItem();
-        if (seleccionado == null) {
-            stage.showAlert("Casa no seleccionada", "Advertencia", "Debe seleccionar una casa para eliminar", Alert.AlertType.WARNING);
+        Casa seleccionada = tvCasas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            stage.showAlert("Casa no seleccionada", "Advertencia", "Debe seleccionar una casa para eliminar.", Alert.AlertType.WARNING);
             return;
         }
 
         boolean confirmado = stage.showConfirmation(
                 "Confirmar eliminación",
                 "Eliminación de Casa",
-                "¿Desea eliminar la casa número: " + seleccionado.getNumeroCasa() + "?"
+                "¿Desea eliminar la casa número: " + seleccionada.getNumeroCasa() + "?"
         );
 
         if (confirmado) {
             try {
-                if (casaService.eliminarCasa(seleccionado)) {
+                if (casaService.eliminarCasa(seleccionada)) {
                     stage.showAlert("Eliminación completada", "Éxito", "Casa eliminada correctamente.", Alert.AlertType.INFORMATION);
-                    cargarTabla();
+
+                    if (cmbCondominio.getValue() != null) {
+                        cargarVistaPorCondominio(cmbCondominio.getValue());
+                    }
                     mostrarFormulario(false);
+                    limpiarFormulario();
                 }
             } catch (Exception e) {
                 stage.showAlert("Error al eliminar", "Error", "No se pudo eliminar la casa: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -171,8 +261,36 @@ public class CasaController implements Initializable {
     }
 
     @FXML
+    private void handleGoToCondominioView() {
+        stage.showCondominioView();
+    }
+
+    @FXML
     private void handleGoToLoginView() {
-        stage.showLoginView();
+        boolean confirmado = stage.showConfirmation(
+                "Confirmar cierre de sesión",
+                "Cerrar Sesión",
+                "¿Desea cerrar sesión?"
+        );
+        if (confirmado) {
+            stage.showLoginView();
+        }
+    }
+
+    @FXML
+    private void handleGoToResidenteView() {
+        stage.showResidenteView();
+    }
+
+    // --- Métodos de Utilidad y Animación ---
+    private void configurarValidacionAlicuota() {
+        txtAlicuota.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*(\\.\\d{0,4})?")) {
+                return change;
+            }
+            return null;
+        }));
     }
 
     private void ocultarPanelDatosInicial() {
@@ -211,18 +329,9 @@ public class CasaController implements Initializable {
     }
 
     private void limpiarFormulario() {
-        cmbCondominio.getSelectionModel().clearSelection();
         txtNumeroCasa.clear();
-        txtAliquota.clear();
-        casaSelect = null;
-    }
-
-    private void cargarTabla() {
-        try {
-            ObservableList<Casa> lista = casaService.listaCasa(); // o obtenerTodasLasCasas() según tu servicio
-            tvCasas.setItems(lista);
-        } catch (Exception e) {
-            stage.showAlert("Error de carga", "Error", "No se pudieron cargar las casas: " + e.getMessage(), Alert.AlertType.ERROR);
-        }
+        txtAlicuota.clear();
+        cmbCondominios.getSelectionModel().clearSelection();
+        casaSeleccionada = null;
     }
 }
