@@ -107,7 +107,7 @@ public class CasaRepository {
 
     public boolean deleteCasa(Casa casa) throws SQLException {
         boolean eliminado = false;
-        String sql = "delete from casas where id_casas = ?";
+        String sql = "delete from casas where id_casa = ?";
 
         try (PreparedStatement pstm = DataBaseConnection.getConnectionDataBase().prepareStatement(sql)) {
             pstm.setInt(1, casa.getIdCasa());
