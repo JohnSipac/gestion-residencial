@@ -14,7 +14,7 @@
     -fx-text-fill: white;
 }
 
-.subtitle {
+.subtitle { 
     -fx-font-size: 16px;
     -fx-text-fill: #2C3E50;
     -fx-font-weight: bold;
