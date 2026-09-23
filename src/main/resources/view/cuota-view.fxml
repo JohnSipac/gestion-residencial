@@ -57,7 +57,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                                <Button mnemonicParsing="false" onAction="#handleGoToCondominioView" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>
                                         <Tooltip text="Condominios" />
                                     </tooltip>
@@ -69,7 +69,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button mnemonicParsing="false" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                                <Button mnemonicParsing="false" onAction="#handleResidentes" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>
                                         <Tooltip text="Residentes" />
                                     </tooltip>
@@ -81,7 +81,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                                <Button mnemonicParsing="false" onAction="#handleGoToCasaResidente" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>
                                         <Tooltip text="Casa de Residente" />
                                     </tooltip>
@@ -93,7 +93,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                                <Button mnemonicParsing="false" onAction="#handleGoToAreaComunView" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>
                                         <Tooltip text="Áreas Comunes" />
                                     </tooltip>
@@ -105,7 +105,7 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button mnemonicParsing="false" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                                <Button mnemonicParsing="false" onAction="#handleGoToReserva" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>
                                         <Tooltip text="Reservas" />
                                     </tooltip>
@@ -117,29 +117,17 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button mnemonicParsing="false" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                                <Button mnemonicParsing="false" onAction="#handleGoToCasaView" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>
-                                        <Tooltip text="Pagos" />
+                                        <Tooltip text="Casas" />
                                     </tooltip>
-                                    <graphic>
-                                        <ImageView fitHeight="31.0" fitWidth="31.0">
-                                            <image>
-                                                <Image url="@../images/pagos.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <Button mnemonicParsing="false" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
-                                    <tooltip>
-                                        <Tooltip text="Cuotas" />
-                                    </tooltip>
-                                    <graphic>
-                                        <ImageView fitHeight="31.0" fitWidth="30.0">
-                                            <image>
-                                                <Image url="@../images/cuotas.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
+                           <graphic>
+                              <ImageView fitHeight="36.0" fitWidth="33.0">
+                                 <image>
+                                    <Image url="@../images/casas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                                 </Button>
                                 <Region prefHeight="74.0" prefWidth="43.0" VBox.vgrow="ALWAYS" />
                                 <Button mnemonicParsing="false" onAction="#handleGoToLoginView" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
@@ -233,9 +221,9 @@
                             <children>
                                 <Label alignment="CENTER" prefHeight="19.0" prefWidth="285.0" styleClass="subtitle" stylesheets="@../css/cuotas.css" text="Datos de la cuota" />
                         
-                                <Label fx:id="lblDireccionCasa" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="subtitle" stylesheets="@../css/cuotas.css" text="Dirección de la casa" />
+                                <Label fx:id="lblDireccionCasa" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="subtitle" stylesheets="@../css/cuotas.css" />
                                 
-                                <HBox fx:id="hbDatosCasa" managed="false" visible="false" spacing="10.0" alignment="CENTER_LEFT">
+                                <HBox fx:id="hbDatosCasa" alignment="CENTER_LEFT" managed="false" spacing="10.0" visible="false">
                                     <children>
                                         <Label fx:id="lblCasaForm" text="Casa" />
                                         <ComboBox fx:id="cmbCasas" prefHeight="25.0" prefWidth="293.0" promptText="Elija la casa" styleClass="combo-box" stylesheets="@../css/cuotas.css" HBox.hgrow="ALWAYS" />

@@ -15,6 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
+
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -121,7 +122,7 @@
                                          <graphic>
                                             <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                  <Image url="@../images/casas.png" />
+                                                  <Image url="@../images/condominio.png" />
                                                </image>
                                             </ImageView>
                                          </graphic>
@@ -135,20 +136,38 @@
                                             </ImageView>
                                          </graphic>
                                       </Button>
-                              <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCasa" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="CASAS">
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCasa" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="CASAS">
+                                         <graphic>
+                                            <ImageView fitHeight="71.0" fitWidth="75.0">
+                                               <image>
+                                                  <Image url="@../images/casas.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCuotas" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="CUOTAS">
+                                         <graphic>
+                                            <ImageView fitHeight="66.0" fitWidth="63.0">
+                                               <image>
+                                                  <Image url="@../images/cuotas.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                                      <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCasaResidente" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="ASIGNAR CASAS">
+                                         <graphic>
+                                            <ImageView fitHeight="55.0" fitWidth="61.0">
+                                               <image>
+                                                  <Image url="@../images/casa-residente.png" />
+                                               </image>
+                                            </ImageView>
+                                         </graphic>
+                                      </Button>
+                              <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleGoToReserva" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="RESERVAS">
                                  <graphic>
-                                    <ImageView fitHeight="68.0" fitWidth="73.0">
+                                    <ImageView fitHeight="74.0" fitWidth="75.0">
                                        <image>
-                                          <Image url="@../images/casas.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleCuotas" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="CUOTAS">
-                                 <graphic>
-                                    <ImageView fitHeight="66.0" fitWidth="63.0">
-                                       <image>
-                                          <Image url="@../images/cuotas.png" />
+                                          <Image url="@../images/reservas.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

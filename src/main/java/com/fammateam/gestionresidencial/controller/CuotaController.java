@@ -374,4 +374,33 @@ public class CuotaController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleGoToCondominioView() {
+        stage.showCondominioView();
+    }
+
+    @FXML
+    private void handleResidentes() {
+        stage.showResidenteView();
+    }
+
+    @FXML
+    private void handleGoToCasaResidente() {
+        stage.showCasaResidente();
+    }
+
+    @FXML
+    private void handleGoToAreaComunView() {
+        stage.showAreaComunView();
+    }
+
+    @FXML
+    private void handleGoToReserva() {
+        stage.showReservaView();
+    }
+
+    @FXML
+    private void handleGoToCasaView() {
+        stage.showCasaView();
+    }
 }

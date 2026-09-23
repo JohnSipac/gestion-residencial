@@ -63,7 +63,7 @@ public class AreaComunController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setupColumns();
         setupComboBoxConverter();
-        setupTextFieldValidation(); 
+        setupTextFieldValidation();
         loadTableData();
         loadCondominios();
         setupTableSelection();
@@ -309,7 +309,14 @@ public class AreaComunController implements Initializable {
 
     @FXML
     private void handleLogin() {
-        sceneManager.showLoginView();
+        boolean confirmado = sceneManager.showConfirmation(
+                "Confirmar cierre de sesión",
+                "Cerrar Sesión",
+                "¿Desea cerrar sesión?"
+        );
+        if (confirmado) {
+            sceneManager.showLoginView();
+        }
     }
 
     @FXML
@@ -320,5 +327,30 @@ public class AreaComunController implements Initializable {
     @FXML
     private void handleResidentes() {
         sceneManager.showResidenteView();
+    }
+
+    @FXML
+    private void handleGoToCasaView() {
+        sceneManager.showCasaView();
+    }
+
+    @FXML
+    private void handleGoToCondominioView() {
+        sceneManager.showCondominioView();
+    }
+
+    @FXML
+    private void handleGoToCasaResidente() {
+        sceneManager.showCasaResidente();
+    }
+
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
+    }
+
+    @FXML
+    private void handleGoToReserva() {
+        sceneManager.showReservaView();
     }
 }

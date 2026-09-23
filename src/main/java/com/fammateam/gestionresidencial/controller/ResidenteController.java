@@ -205,6 +205,16 @@ public class ResidenteController implements Initializable {
         sceneManager.showCasaView();
     }
 
+    @FXML
+    private void handleGoToAreaComunView() {
+        sceneManager.showAreaComunView();
+    }
+
+    @FXML
+    private void handleGoToReservaView() {
+        sceneManager.showReservaView();
+    }
+
     private void configurarTabla() {
         tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         tcApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
@@ -270,5 +280,15 @@ public class ResidenteController implements Initializable {
         txtTelefono.clear();
         cmbTipoResidente.getSelectionModel().clearSelection();
         residenteSeleccionado = null;
+    }
+
+    @FXML
+    private void handleGoToCasaResidente() {
+        sceneManager.showCasaResidente();
+    }
+
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
     }
 }

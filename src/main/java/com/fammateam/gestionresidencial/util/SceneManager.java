@@ -10,23 +10,29 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import main.java.com.fammateam.gestionresidencial.controller.CasaController;
 import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
+import main.java.com.fammateam.gestionresidencial.controller.CasaResidenteController;
 import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.CuotaController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
+import main.java.com.fammateam.gestionresidencial.controller.ReservaController;
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
+import main.java.com.fammateam.gestionresidencial.repository.CasaResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CuotaRepository;
+import main.java.com.fammateam.gestionresidencial.repository.ReservaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
+import main.java.com.fammateam.gestionresidencial.service.CasaResidenteService;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
 import main.java.com.fammateam.gestionresidencial.service.CuotaService;
+import main.java.com.fammateam.gestionresidencial.service.ReservaService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
 public class SceneManager {
@@ -174,7 +180,7 @@ public class SceneManager {
             return null;
         });
     }
-    
+
     public void showCuotaView() {
         loadView("cuota-view.fxml", "Gestion Residencial - Gestión de Cuotas", clazz -> {
             if (clazz == CuotaController.class) {
@@ -184,7 +190,36 @@ public class SceneManager {
                 CuotaService cuotaService = new CuotaService(cuotaRepository);
                 CasaService casaService = new CasaService(casaRepository);
                 CondominioService condominioService = new CondominioService(condominioRepository);
-                return new CuotaController(this,cuotaService, casaService, condominioService);
+                return new CuotaController(this, cuotaService, casaService, condominioService);
+            }
+            return null;
+        });
+    }
+
+    public void showReservaView() {
+        loadView("gestion-reservas-view.fxml", "Gestion Residencial - Gestión de Reservas", clazz -> {
+            if (clazz == ReservaController.class) {
+                ReservaRepository reservaRepository = new ReservaRepository();
+                ReservaService reservaService = new ReservaService(reservaRepository);
+                AreaComunRepository areaComunRepository = new AreaComunRepository();
+                CondominioRepository condominioRepository = new CondominioRepository();
+                AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
+                ResidenteRepository residenteRepository = new ResidenteRepository();
+                ResidenteService residenteService = new ResidenteService(residenteRepository);
+                return new ReservaController(reservaService, areaComunService, residenteService, this);
+            }
+            return null;
+        });
+    }
+
+    public void showCasaResidente() {
+        loadView("casa-residente-view.fxml", "Gestion Residencial - Asignacion de Residentes", clazz -> {
+            if (clazz == CasaResidenteController.class) {
+                CasaResidenteRepository casaResiRepository = new CasaResidenteRepository();
+                CasaRepository casaRepository = new CasaRepository();
+                ResidenteRepository residenteRepository = new ResidenteRepository();
+                CasaResidenteService casaResiService = new CasaResidenteService(casaResiRepository, casaRepository, residenteRepository);
+                return new CasaResidenteController(this, casaResiService);
             }
             return null;
         });

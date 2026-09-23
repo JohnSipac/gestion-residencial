@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.ReservaController">
+    <stylesheets>
+        <URL value="@/main/resources/css/reserva.css" />
+    </stylesheets>
+   <children>
+      <BorderPane layoutX="20.0" layoutY="20.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="83.0" prefWidth="580.0" stylesheets="@../css/reserva.css" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutY="-7.0" prefHeight="63.0" prefWidth="600.0" styleClass="banner-container" stylesheets="@../css/reserva.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="20.0" layoutY="19.0" styleClass="title-primary" stylesheets="@../css/reserva.css" text="Gestión de Reservas" />
+                     </children>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane prefHeight="497.0" prefWidth="54.0" stylesheets="@../css/reserva.css" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <VBox fx:id="sidebar" layoutX="-3.0" layoutY="-1.0" prefHeight="623.0" prefWidth="200.0" spacing="10.0" styleClass="bar-container" stylesheets="@../css/reserva.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+                     </padding>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleGoToMainMenu" prefHeight="33.0" prefWidth="74.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Menú Principal" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../images/menu-principal.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToCondominioView" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Condominios" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/condominio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToCasaView" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Casas" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="34.0" fitWidth="31.0">
+                                 <image>
+                                    <Image url="@../images/casas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToResidenteView" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Residentes" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="31.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/residentes.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleCasaResidente" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Casa de Residente" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="31.0" fitWidth="31.0">
+                                 <image>
+                                    <Image url="@../images/casa-residente.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleAreaComun" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Áreas Comunes" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="31.0">
+                                 <image>
+                                    <Image url="@../images/areas-comunes.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToCuota" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Cuotas" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="31.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/cuotas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Region prefHeight="74.0" prefWidth="43.0" VBox.vgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleGoToLoginView" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                           <tooltip>
+                              <Tooltip text="Cerrar Sesión" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="31.0">
+                                 <image>
+                                    <Image url="@../images/cerrar-sesion.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <center>
+            <AnchorPane BorderPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="-11.0" layoutY="-12.0" prefHeight="510.0" prefWidth="432.0" spacing="10.0" styleClass="card-container" stylesheets="@../css/reserva.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="19.0" styleClass="subtitle" stylesheets="@../css/reserva.css" text="Filtrar por área común" />
+                        <ComboBox fx:id="cmbArea" maxWidth="1.7976931348623157E308" promptText="Elija el área común" styleClass="custom-combo" stylesheets="@../css/reserva.css" />
+                        <Label fx:id="lblDatos" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="19.0" styleClass="subtitle" stylesheets="@../css/reserva.css" text="Datos del área común" visible="false" />
+                        <HBox fx:id="hbDatosAreaComun" maxWidth="1.7976931348623157E308" visible="false">
+                           <children>
+                              <VBox maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="105.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="label-encabezado" stylesheets="@../css/casas.css" text="Nombre" />
+                                    <Label fx:id="lblNombreArea" maxWidth="1.7976931348623157E308" styleClass="label-datos" stylesheets="@../css/casas.css" text="Label" />
+                                 </children>
+                              </VBox>
+                              <VBox maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="93.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="109.0" styleClass="label-encabezado" stylesheets="@../css/casas.css" text="Costo Reserva" />
+                                    <Label fx:id="lblCostoReserva" maxWidth="1.7976931348623157E308" styleClass="label-datos" stylesheets="@../css/casas.css" text="Label" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label fx:id="lblReservas" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="19.0" styleClass="subtitle" stylesheets="@../css/reserva.css" text="Reservas" visible="false" VBox.vgrow="NEVER" />
+                        <TableView fx:id="tvReservas" prefHeight="541.0" prefWidth="491.0" visible="false">
+                           <columns>
+                              <TableColumn fx:id="tcNombreResidente" prefWidth="75.0" text="Nombre del residente" />
+                              <TableColumn fx:id="tcFechaReserva" prefWidth="75.0" text="Fecha de reserva" />
+                              <TableColumn fx:id="tcHoraInicio" prefWidth="75.0" text="Hora de inicio" />
+                              <TableColumn fx:id="tcHoraFin" prefWidth="75.0" text="Hora de fin" />
+                              <TableColumn fx:id="tcEstado" prefWidth="75.0" text="Estado" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Region prefHeight="8.0" prefWidth="491.0" VBox.vgrow="ALWAYS" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleShowCreateForm" prefWidth="90.0" styleClass="button-primary" stylesheets="@../css/casas.css" text="Crear">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0">
+                                       <image>
+                                          <Image url="@../images/crear.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#handleUpdate" prefWidth="110.0" styleClass="button-primary" stylesheets="@../css/casas.css" text="Actualizar">
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="14.0">
+                                       <image>
+                                          <Image url="@../images/actualizar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Region prefHeight="38.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#handleDelete" prefWidth="110.0" styleClass="button-delete" stylesheets="@../css/casas.css" text="Eliminar">
+                                 <graphic>
+                                    <ImageView fitHeight="17.0" fitWidth="15.0">
+                                       <image>
+                                          <Image url="@../images/borrar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </AnchorPane>
+         </center>
+         <right>
+            <AnchorPane fx:id="panelDatos" prefHeight="497.0" prefWidth="294.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox spacing="10.0" styleClass="card-container" stylesheets="@../css/reserva.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="subtitle" stylesheets="@../css/reserva.css" text="Datos de la reserva" />
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="467.0" prefWidth="283.0" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                          <content>
+                             <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="281.0">
+                                <children>
+                                   <VBox spacing="10.0" styleClass="datos-container" stylesheets="@../css/reserva.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <children>
+                                         <Label text="Área común" />
+                                         <ComboBox fx:id="cmbAreas" maxWidth="1.7976931348623157E308" promptText="Elija el área común" styleClass="custom-combo" stylesheets="@../css/reserva.css" />
+                                         <Label text="Residente" />
+                                         <ComboBox fx:id="cmbResidente" maxWidth="1.7976931348623157E308" promptText="Elija el residente" styleClass="custom-combo" stylesheets="@../css/reserva.css" />
+                                         <Label stylesheets="@../css/reserva.css" text="Fecha reserva" />
+                                         <DatePicker fx:id="dpFechaReserva" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="247.0" />
+                                         <Label stylesheets="@../css/reserva.css" text="Hora de inicio" />
+                                          <VBox prefHeight="0.0" prefWidth="241.0">
+                                             <children>
+                                                <HBox prefHeight="0.0" prefWidth="241.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="181.0" styleClass="label-encabezado" stylesheets="@../css/casas.css" text="Horas" />
+                                                      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="182.0" styleClass="label-encabezado" stylesheets="@../css/casas.css" text="Minutos" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="0.0" prefWidth="241.0">
+                                                   <children>
+                                                      <ComboBox fx:id="cmbHoraInicio" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="150.0" styleClass="custom-combo-square" stylesheets="@../css/reserva.css" />
+                                                      <ComboBox fx:id="cmbMinutoInicio" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="150.0" styleClass="custom-combo-square" stylesheets="@../css/reserva.css" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                         <Label text="Hora de fin" />
+                                          <VBox prefHeight="0.0" prefWidth="241.0">
+                                             <children>
+                                                <HBox prefHeight="0.0" prefWidth="241.0">
+                                                   <children>
+                                                      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="181.0" styleClass="label-encabezado" stylesheets="@../css/casas.css" text="Horas" />
+                                                      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="182.0" styleClass="label-encabezado" stylesheets="@../css/casas.css" text="Minutos" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="0.0" prefWidth="241.0">
+                                                   <children>
+                                                      <ComboBox fx:id="cmbHoraFin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="153.0" styleClass="custom-combo-square" stylesheets="@../css/reserva.css" />
+                                                      <ComboBox fx:id="cmbMinutoFin" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="150.0" styleClass="custom-combo-square" stylesheets="@../css/reserva.css" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                         <Label text="Estado" />
+                                         <ComboBox fx:id="cmbEstado" maxWidth="1.7976931348623157E308" promptText="Elija el estado" styleClass="custom-combo" stylesheets="@../css/reserva.css" />
+                                      </children>
+                                      <padding>
+                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                      </padding>
+                                   </VBox>
+                                </children>
+                             </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                        <HBox prefHeight="26.0" spacing="20.0">
+                           <children>
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#handleSave" prefWidth="110.0" styleClass="button-primary" stylesheets="@../css/reserva.css" text="Guardar">
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="12.0">
+                                       <image>
+                                          <Image url="@../images/guardar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" prefWidth="110.0" styleClass="button-delete" stylesheets="@../css/reserva.css" text="Cancelar">
+                                 <graphic>
+                                    <ImageView fitHeight="19.0" fitWidth="19.0">
+                                       <image>
+                                          <Image url="@../images/cancelar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets left="22.0" right="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

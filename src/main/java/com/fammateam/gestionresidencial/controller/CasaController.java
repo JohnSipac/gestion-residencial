@@ -334,4 +334,25 @@ public class CasaController implements Initializable {
         cmbCondominios.getSelectionModel().clearSelection();
         casaSeleccionada = null;
     }
+
+    @FXML
+    private void handleGoToCasaResidente() {
+        stage.showCasaResidente();
+    }
+
+    @FXML
+    private void handleGoToCuota() {
+        stage.showCuotaView();
+    }
+
+    @FXML
+    private void handleGoToAreaComunView() {
+        stage.showAreaComunView();
+    }
+
+    @FXML
+    private void handleGoToReserva() {
+        stage.showReservaView();
+    }
+    
 }
