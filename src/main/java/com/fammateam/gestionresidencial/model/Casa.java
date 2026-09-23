@@ -48,4 +48,9 @@ public class Casa {
     public void setAliquota(double aliquota) {
         this.aliquota = aliquota;
     }
+    
+    @Override
+    public String toString() {
+        return this.numeroCasa;
+    }
 }

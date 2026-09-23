@@ -343,4 +343,14 @@ public class AreaComunController implements Initializable {
     private void handleGoToCasaResidente() {
         sceneManager.showCasaResidente();
     }
+
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
+    }
+
+    @FXML
+    private void handleGoToReserva() {
+        sceneManager.showReservaView();
+    }
 }

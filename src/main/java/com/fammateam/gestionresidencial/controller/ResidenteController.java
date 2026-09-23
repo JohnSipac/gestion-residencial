@@ -204,12 +204,12 @@ public class ResidenteController implements Initializable {
     private void handleGoToCasaView() {
         sceneManager.showCasaView();
     }
-    
+
     @FXML
     private void handleGoToAreaComunView() {
         sceneManager.showAreaComunView();
     }
-    
+
     @FXML
     private void handleGoToReservaView() {
         sceneManager.showReservaView();
@@ -280,5 +280,15 @@ public class ResidenteController implements Initializable {
         txtTelefono.clear();
         cmbTipoResidente.getSelectionModel().clearSelection();
         residenteSeleccionado = null;
+    }
+
+    @FXML
+    private void handleGoToCasaResidente() {
+        sceneManager.showCasaResidente();
+    }
+
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
     }
 }

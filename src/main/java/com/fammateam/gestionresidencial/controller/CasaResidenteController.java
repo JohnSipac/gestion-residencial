@@ -322,4 +322,14 @@ public class CasaResidenteController implements Initializable {
         cmbResidente.setDisable(false);
         asignacionSeleccionada = null;
     }
+
+    @FXML
+    private void handleGoToReserva() {
+        sceneManager.showReservaView();
+    }
+
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
+    }
 }

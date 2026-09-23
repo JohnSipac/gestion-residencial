@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.AreaComunController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.AreaComunController">
     <stylesheets>
         <URL value="@/main/resources/css/condominios.css" />
     </stylesheets>
@@ -117,6 +117,30 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToCuota" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary">
+                           <tooltip>
+                              <Tooltip text="Cuotas" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="34.0" fitWidth="32.0">
+                                 <image>
+                                    <Image url="@../images/cuotas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToReserva" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary">
+                           <tooltip>
+                              <Tooltip text="Reservas" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/reservas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
 
                                 <Region prefHeight="74.0" prefWidth="43.0" VBox.vgrow="ALWAYS" />
 

@@ -35,7 +35,7 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void backToLogin() {
-         boolean confirmado = sceneManager.showConfirmation(
+        boolean confirmado = sceneManager.showConfirmation(
                 "Confirmar cierre de sesión",
                 "Cerrar Sesión",
                 "¿Desea cerrar sesión?"
@@ -89,8 +89,17 @@ public class MainMenuController implements Initializable {
     }
 
     @FXML
+    private void handleCuotas() {
+        sceneManager.showCuotaView();
+    }
+
+    @FXML
     private void handleCasaResidente() {
         sceneManager.showCasaResidente();
     }
 
+    @FXML
+    private void handleGoToReserva() {
+        sceneManager.showReservaView();
+    }
 }

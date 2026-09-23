@@ -423,7 +423,7 @@ public class ReservaController implements Initializable {
     private void handleGoToResidenteView() {
         sceneManager.showResidenteView();
     }
-    
+
     @FXML
     private void handleGoToCasaView() {
         sceneManager.showCasaView();
@@ -518,5 +518,20 @@ public class ReservaController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    @FXML
+    private void handleCasaResidente() {
+        sceneManager.showCasaResidente();
+    }
+
+    @FXML
+    private void handleAreaComun() {
+        sceneManager.showAreaComunView();
+    }
+
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
     }
 }

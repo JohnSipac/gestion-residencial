@@ -176,8 +176,8 @@ public class CondominioController implements Initializable {
     private void handleGoToResidenteView() {
         sceneManager.showResidenteView();
     }
-    
-     @FXML
+
+    @FXML
     private void handleGoToReservaViewView() {
         sceneManager.showReservaView();
     }
@@ -186,7 +186,7 @@ public class CondominioController implements Initializable {
     private void handleGoToCasaView() {
         sceneManager.showCasaView();
     }
-    
+
     @FXML
     private void handleGoToAreaComunView() {
         sceneManager.showAreaComunView();
@@ -253,5 +253,15 @@ public class CondominioController implements Initializable {
         txtDireccion.clear();
         txtTelefono.clear();
         condominioSeleccionado = null;
+    }
+
+    @FXML
+    private void handleGoToCasaResidente() {
+        sceneManager.showCasaResidente();
+    }
+    
+    @FXML
+    private void handleGoToCuota() {
+        sceneManager.showCuotaView();
     }
 }

@@ -97,7 +97,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                        <Button mnemonicParsing="false" onAction="#handleCasaResidente" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
                            <tooltip>
                               <Tooltip text="Casa de Residente" />
                            </tooltip>
@@ -109,7 +109,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                        <Button mnemonicParsing="false" onAction="#handleAreaComun" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary" stylesheets="@../css/reserva.css">
                            <tooltip>
                               <Tooltip text="Áreas Comunes" />
                            </tooltip>
@@ -121,19 +121,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="button-secundary" stylesheets="@../css/reserva.css">
-                           <tooltip>
-                              <Tooltip text="Pagos" />
-                           </tooltip>
-                           <graphic>
-                              <ImageView fitHeight="31.0" fitWidth="31.0">
-                                 <image>
-                                    <Image url="@../images/pagos.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button mnemonicParsing="false" styleClass="button-secundary" stylesheets="@../css/reserva.css">
+                        <Button mnemonicParsing="false" onAction="#handleGoToCuota" styleClass="button-secundary" stylesheets="@../css/reserva.css">
                            <tooltip>
                               <Tooltip text="Cuotas" />
                            </tooltip>
