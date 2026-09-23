@@ -176,10 +176,20 @@ public class CondominioController implements Initializable {
     private void handleGoToResidenteView() {
         sceneManager.showResidenteView();
     }
+    
+     @FXML
+    private void handleGoToReservaViewView() {
+        sceneManager.showReservaView();
+    }
 
     @FXML
     private void handleGoToCasaView() {
         sceneManager.showCasaView();
+    }
+    
+    @FXML
+    private void handleGoToAreaComunView() {
+        sceneManager.showAreaComunView();
     }
 
     private void configurarTabla() {

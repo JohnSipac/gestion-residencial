@@ -204,6 +204,16 @@ public class ResidenteController implements Initializable {
     private void handleGoToCasaView() {
         sceneManager.showCasaView();
     }
+    
+    @FXML
+    private void handleGoToAreaComunView() {
+        sceneManager.showAreaComunView();
+    }
+    
+    @FXML
+    private void handleGoToReservaView() {
+        sceneManager.showReservaView();
+    }
 
     private void configurarTabla() {
         tcNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
