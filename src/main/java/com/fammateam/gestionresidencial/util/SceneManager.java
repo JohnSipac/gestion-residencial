@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import main.java.com.fammateam.gestionresidencial.controller.CasaController;
 import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
+import main.java.com.fammateam.gestionresidencial.controller.CasaResidenteController;
 import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
@@ -17,11 +18,13 @@ import main.java.com.fammateam.gestionresidencial.controller.RegistroViewControl
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
+import main.java.com.fammateam.gestionresidencial.repository.CasaResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
+import main.java.com.fammateam.gestionresidencial.service.CasaResidenteService;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
@@ -167,6 +170,19 @@ public class SceneManager {
                 CondominioRepository condominioRepository = new CondominioRepository();
                 AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
                 return new AreaComunController(areaComunService, this);
+            }
+            return null;
+        });
+    }
+
+    public void showCasaResidente() {
+        loadView("casa-residente-view.fxml", "Gestion Residencial - Asignacion de Residentes", clazz -> {
+            if (clazz == CasaResidenteController.class) {
+                CasaResidenteRepository casaResiRepository = new CasaResidenteRepository();
+                CasaRepository casaRepository = new CasaRepository();
+                ResidenteRepository residenteRepository = new ResidenteRepository();
+                CasaResidenteService casaResiService = new CasaResidenteService(casaResiRepository, casaRepository, residenteRepository);
+                return new CasaResidenteController(this, casaResiService);
             }
             return null;
         });
