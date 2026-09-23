@@ -14,16 +14,19 @@ import main.java.com.fammateam.gestionresidencial.controller.CondominioControlle
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
+import main.java.com.fammateam.gestionresidencial.controller.ReservaController;
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
+import main.java.com.fammateam.gestionresidencial.repository.ReservaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
+import main.java.com.fammateam.gestionresidencial.service.ReservaService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
 public class SceneManager {
@@ -167,6 +170,22 @@ public class SceneManager {
                 CondominioRepository condominioRepository = new CondominioRepository();
                 AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
                 return new AreaComunController(areaComunService, this);
+            }
+            return null;
+        });
+    }
+
+    public void showReservaView() {
+        loadView("gestion-reservas-view.fxml", "Gestion Residencial - Gestión de Reservas", clazz -> {
+            if (clazz == ReservaController.class) {
+                ReservaRepository reservaRepository = new ReservaRepository();
+                ReservaService reservaService = new ReservaService(reservaRepository);
+                AreaComunRepository areaComunRepository = new AreaComunRepository();
+                CondominioRepository condominioRepository = new CondominioRepository();
+                AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
+                ResidenteRepository residenteRepository = new ResidenteRepository();
+                ResidenteService residenteService = new ResidenteService(residenteRepository);
+                return new ReservaController(reservaService, areaComunService, residenteService, this);
             }
             return null;
         });
