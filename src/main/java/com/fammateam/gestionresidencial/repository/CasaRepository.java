@@ -5,6 +5,8 @@ import main.java.com.fammateam.gestionresidencial.model.Casa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -33,7 +35,29 @@ public class CasaRepository {
         }
         return null;
     }
-    
+
+    public List<Casa> findCasasByCondominio(Casa casa) throws SQLException {
+        List<Casa> listaCasas = new ArrayList<>();
+        String sql = "SELECT id_casa, id_condominio, numero_casa, aliquota FROM casas WHERE id_condominio = ?";
+
+        try (PreparedStatement pstm = DataBaseConnection.getConnectionDataBase().prepareStatement(sql)) {
+            pstm.setInt(1, casa.getIdCondominio());
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    Casa nuevaCasa = new Casa(
+                            rs.getInt("id_casa"),
+                            rs.getInt("id_condominio"),
+                            rs.getString("numero_casa"),
+                            rs.getDouble("aliquota")
+                    );
+                    listaCasas.add(nuevaCasa);
+                }
+            }
+        }
+        return listaCasas;
+    }
+
     public ObservableList<Casa> ListCasas() throws SQLException {
 
         String sql = "SELECT c.id_casa, c.id_condominio, c.numero_casa, c.aliquota, con.nombre AS nombre_condominio "

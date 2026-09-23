@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import main.java.com.fammateam.gestionresidencial.model.Casa;
 
 public class CuotaRepository {
 
@@ -40,13 +41,16 @@ public class CuotaRepository {
         return null;
     }
 
-    public List<Cuota> findCuotaByCasa(Cuota cuota) throws SQLException {
+    public List<Cuota> findCuotaByCasa(Casa casa) throws SQLException {
         List<Cuota> lista = new ArrayList<>();
+        if (casa == null) {
+            return lista;
+        }
         String sql = "SELECT * FROM cuotas WHERE id_casa = ? ORDER BY anio DESC, mes DESC";
 
         try (PreparedStatement pstm = DataBaseConnection.getConnectionDataBase().prepareStatement(sql)) {
 
-            pstm.setInt(1, cuota.getIdCasa());
+            pstm.setInt(1, casa.getIdCasa());
 
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
@@ -126,8 +130,8 @@ public class CuotaRepository {
             return actualizado;
         }
     }
-    
-        public boolean deleteCuota(Cuota cuota) throws SQLException {
+
+    public boolean deleteCuota(Cuota cuota) throws SQLException {
         boolean eliminado = false;
         String sql = "delete from cuotas where id_cuota = ?";
 

@@ -3,6 +3,7 @@ package main.java.com.fammateam.gestionresidencial.service;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.ObservableList;
+import main.java.com.fammateam.gestionresidencial.model.Casa;
 import main.java.com.fammateam.gestionresidencial.model.Cuota;
 import main.java.com.fammateam.gestionresidencial.repository.CuotaRepository;
 
@@ -18,8 +19,8 @@ public class CuotaService {
         return cuotaRepository.findCuotaById(cuota);
     }
 
-    public List<Cuota> findCuotaByCasa(Cuota cuota) throws SQLException {
-        return cuotaRepository.findCuotaByCasa(cuota);
+    public List<Cuota> findCuotaByCasa(Casa casa) throws SQLException {
+        return cuotaRepository.findCuotaByCasa(casa);
     }
 
     public ObservableList<Cuota> listaCuota() throws SQLException {

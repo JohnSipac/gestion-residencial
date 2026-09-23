@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import main.java.com.fammateam.gestionresidencial.controller.CasaController;
 import main.java.com.fammateam.gestionresidencial.controller.AreaComunController;
 import main.java.com.fammateam.gestionresidencial.controller.CondominioController;
+import main.java.com.fammateam.gestionresidencial.controller.CuotaController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
@@ -18,12 +19,14 @@ import main.java.com.fammateam.gestionresidencial.controller.ResidenteController
 import main.java.com.fammateam.gestionresidencial.repository.CasaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
+import main.java.com.fammateam.gestionresidencial.repository.CuotaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
 import main.java.com.fammateam.gestionresidencial.service.AreaComunService;
 import main.java.com.fammateam.gestionresidencial.service.AuthService;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
+import main.java.com.fammateam.gestionresidencial.service.CuotaService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
 public class SceneManager {
@@ -167,6 +170,21 @@ public class SceneManager {
                 CondominioRepository condominioRepository = new CondominioRepository();
                 AreaComunService areaComunService = new AreaComunService(areaComunRepository, condominioRepository);
                 return new AreaComunController(areaComunService, this);
+            }
+            return null;
+        });
+    }
+    
+    public void showCuotaView() {
+        loadView("cuota-view.fxml", "Gestion Residencial - Gestión de Cuotas", clazz -> {
+            if (clazz == CuotaController.class) {
+                CuotaRepository cuotaRepository = new CuotaRepository();
+                CasaRepository casaRepository = new CasaRepository();
+                CondominioRepository condominioRepository = new CondominioRepository();
+                CuotaService cuotaService = new CuotaService(cuotaRepository);
+                CasaService casaService = new CasaService(casaRepository);
+                CondominioService condominioService = new CondominioService(condominioRepository);
+                return new CuotaController(this,cuotaService, casaService, condominioService);
             }
             return null;
         });

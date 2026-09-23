@@ -81,4 +81,8 @@ public class MainMenuController implements Initializable {
         sceneManager.showResidenteView();
     }
 
+    @FXML
+    private void handleCuotas() {
+        sceneManager.showCuotaView();
+    }
 }
