@@ -35,7 +35,14 @@ public class MainMenuController implements Initializable {
 
     @FXML
     public void backToLogin() {
-        sceneManager.showLoginView();
+         boolean confirmado = sceneManager.showConfirmation(
+                "Confirmar cierre de sesión",
+                "Cerrar Sesión",
+                "¿Desea cerrar sesión?"
+        );
+        if (confirmado) {
+            sceneManager.showLoginView();
+        }
     }
 
     private void cargarDatosUsuario() {
@@ -79,6 +86,11 @@ public class MainMenuController implements Initializable {
     @FXML
     private void handleResidentes() {
         sceneManager.showResidenteView();
+    }
+
+    @FXML
+    private void handleCasaResidente() {
+        sceneManager.showCasaResidente();
     }
 
 }
