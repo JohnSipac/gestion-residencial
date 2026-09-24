@@ -2,9 +2,11 @@ package main.java.com.fammateam.gestionresidencial.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -78,7 +80,6 @@ public class CasaController implements Initializable {
         ocultarPanelDatosInicial();
     }
 
-    // --- Métodos de Configuración Inicial (Buenas Prácticas) ---
     private void configurarColumnasTabla() {
         tcNumeroCasa.setCellValueFactory(new PropertyValueFactory<>("numeroCasa"));
         tcAlicuota.setCellValueFactory(new PropertyValueFactory<>("aliquota"));
@@ -106,16 +107,20 @@ public class CasaController implements Initializable {
 
     // --- Lógica de la Vista ---
     private void cargarVistaPorCondominio(String nombreCondominio) {
-        Condominio cond = condominioService.obtenerCondominioPorNombre(nombreCondominio);
-        if (cond != null) {
-            condominioSeleccionado = cond;
-            lblDireccion.setText(cond.getDireccion());
-            lblTelefono.setText(cond.getTelefono());
+        Condominio condominio = condominioService.obtenerCondominioPorNombre(nombreCondominio);
+        if (condominio != null) {
+            condominioSeleccionado = condominio;
+            lblDireccion.setText(condominio.getDireccion());
+            lblTelefono.setText(condominio.getTelefono());
 
             mostrarElementosCentrales(true);
 
-            ObservableList<Casa> casas = casaService.listaCasa();
-            tvCasas.setItems(casas);
+            // FILTRAR CASAS POR EL ID DEL CONDOMINIO SELECCIONADO
+            ObservableList<Casa> casasFiltradas = casaService.listaCasa().stream()
+                    .filter(c -> c.getIdCondominio() == condominio.getIdCondominio())
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+            tvCasas.setItems(casasFiltradas);
         }
     }
 
@@ -354,5 +359,5 @@ public class CasaController implements Initializable {
     private void handleGoToReserva() {
         stage.showReservaView();
     }
-    
+
 }

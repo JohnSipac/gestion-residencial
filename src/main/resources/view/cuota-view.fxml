@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../css/cuota-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.CuotaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../css/cuota-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.CuotaController">
     <children>
         <BorderPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -121,13 +121,13 @@
                                     <tooltip>
                                         <Tooltip text="Casas" />
                                     </tooltip>
-                           <graphic>
-                              <ImageView fitHeight="36.0" fitWidth="33.0">
-                                 <image>
-                                    <Image url="@../images/casas.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                                    <graphic>
+                                        <ImageView fitHeight="36.0" fitWidth="33.0">
+                                            <image>
+                                                <Image url="@../images/casas.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
                                 </Button>
                                 <Region prefHeight="74.0" prefWidth="43.0" VBox.vgrow="ALWAYS" />
                                 <Button mnemonicParsing="false" onAction="#handleGoToLoginView" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
@@ -158,11 +158,9 @@
                                 <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="19.0" styleClass="subtitle" stylesheets="@../css/cuotas.css" text="Filtrar por condominio" />
                                 <ComboBox fx:id="cmbCondominio" maxWidth="1.7976931348623157E308" promptText="Elija el condominio" stylesheets="@../css/cuota.css" />
                         
-                                <!-- FILTRO CASAS: Oculto por defecto (visible=false, managed=false) -->
                                 <Label fx:id="lblFiltroCasa" alignment="CENTER" contentDisplay="CENTER" managed="false" maxWidth="1.7976931348623157E308" prefHeight="19.0" styleClass="subtitle" stylesheets="@../css/cuotas.css" text="Filtrar por casa" visible="false" />
                                 <ComboBox fx:id="cmbCasa" managed="false" maxWidth="1.7976931348623157E308" promptText="Elija la casa" stylesheets="@../css/cuotas.css" visible="false" />
 
-                                <!-- TABLA SIEMPRE VISIBLE -->
                                 <Label fx:id="lblTituloTabla" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="19.0" styleClass="subtitle" stylesheets="@../css/cuotas.css" text="Listado de Cuotas" VBox.vgrow="NEVER" />
                                 <TableView fx:id="tvCuotas" prefHeight="200.0" prefWidth="211.0" VBox.vgrow="ALWAYS">
                                     <columns>
@@ -173,8 +171,8 @@
                                         <TableColumn fx:id="tvColumnFechaVencimiento" prefWidth="120.0" text="Fecha de vencimiento" />
                                     </columns>
                                 </TableView>
-                                <Region prefHeight="8.0" prefWidth="491.0" VBox.vgrow="ALWAYS" />
-                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                <Region prefHeight="8.0" prefWidth="211.0" VBox.vgrow="ALWAYS" />
+                                <HBox alignment="BOTTOM_LEFT" prefHeight="45.0" prefWidth="200.0" spacing="20.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleCreateCuota" prefWidth="90.0" styleClass="button-primary" stylesheets="@../css/cuotas.css" text="Crear">
                                             <graphic>
@@ -223,23 +221,19 @@
                         
                                 <Label fx:id="lblDireccionCasa" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="subtitle" stylesheets="@../css/cuotas.css" />
                                 
-                                <HBox fx:id="hbDatosCasa" alignment="CENTER_LEFT" managed="false" spacing="10.0" visible="false">
-                                    <children>
-                                        <Label fx:id="lblCasaForm" text="Casa" />
-                                        <ComboBox fx:id="cmbCasas" prefHeight="25.0" prefWidth="293.0" promptText="Elija la casa" styleClass="combo-box" stylesheets="@../css/cuotas.css" HBox.hgrow="ALWAYS" />
-                                    </children>
-                                </HBox>
+                                <HBox fx:id="hbDatosCasa" alignment="CENTER_LEFT" managed="false" spacing="10.0" visible="false" />
                                 <Label stylesheets="@../css/cuotas.css" text="Mes" />
-                                <TextField fx:id="txtMes" promptText="Numero de mes ejem: 1  enero" styleClass="text-field" stylesheets="@../css/cuotas.css" />
+                                <TextField fx:id="txtMes" promptText="Numero de mes ejem: 1  enero" styleClass="text-field" stylesheets="@../css/cuotas.css" text="ej. 1,2 6, 7" />
                         
                                 <Label text="Año" />
                                 <TextField fx:id="txtAnio" promptText="ej. 1967" />
                                 <Label text="Monto" />
                                 <TextField fx:id="txtMonto" promptText="Q" />
                                 <Label text="Estado" />
-                                <ComboBox fx:id="cmbEstado" prefWidth="150.0" />
+                                <ComboBox fx:id="cmbEstado" prefWidth="150.0" stylesheets="@../css/cuota-view.css" />
                                 <Label text="Fecha de vencimiento" />
                                 <DatePicker fx:id="dpFechaVencimiento" prefHeight="37.0" prefWidth="263.0" />
+                                <Region VBox.vgrow="ALWAYS" />
                                 <HBox prefHeight="26.0" prefWidth="257.0" spacing="20.0">
                                     <children>
                                         <Button defaultButton="true" mnemonicParsing="false" onAction="#handleSaveCuota" prefWidth="110.0" styleClass="button-primary" stylesheets="@../css/cuotas.css" text="Guardar">
