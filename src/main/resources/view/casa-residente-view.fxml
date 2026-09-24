@@ -126,9 +126,21 @@
                               <Tooltip text="Cuotas" />
                            </tooltip>
                            <graphic>
-                              <ImageView fitHeight="28.0" fitWidth="25.0">
+                              <ImageView fitHeight="28.0" fitWidth="27.0">
                                  <image>
                                     <Image url="@../images/cuotas.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToPagoView" prefHeight="19.0" prefWidth="40.0" styleClass="button-secundary">
+                           <tooltip>
+                              <Tooltip text="Pagos" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="31.0">
+                                 <image>
+                                    <Image url="@../images/pagos.png" />
                                  </image>
                               </ImageView>
                            </graphic>

@@ -332,4 +332,9 @@ public class CasaResidenteController implements Initializable {
     private void handleGoToCuota() {
         sceneManager.showCuotaView();
     }
+    
+    @FXML
+    private void handleGoToPagoView() {
+        sceneManager.showPagoView();
+    }
 }
