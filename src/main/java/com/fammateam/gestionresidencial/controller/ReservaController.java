@@ -534,4 +534,9 @@ public class ReservaController implements Initializable {
     private void handleGoToCuota() {
         sceneManager.showCuotaView();
     }
+    
+    @FXML
+    private void handleGoToPagoView() {
+        sceneManager.showPagoView();
+    }
 }

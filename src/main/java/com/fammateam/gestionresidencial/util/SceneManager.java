@@ -15,6 +15,7 @@ import main.java.com.fammateam.gestionresidencial.controller.CondominioControlle
 import main.java.com.fammateam.gestionresidencial.controller.CuotaController;
 import main.java.com.fammateam.gestionresidencial.controller.LoginViewController;
 import main.java.com.fammateam.gestionresidencial.controller.MainMenuController;
+import main.java.com.fammateam.gestionresidencial.controller.PagoController;
 import main.java.com.fammateam.gestionresidencial.controller.RegistroViewController;
 import main.java.com.fammateam.gestionresidencial.controller.ReservaController;
 import main.java.com.fammateam.gestionresidencial.controller.ResidenteController;
@@ -23,6 +24,7 @@ import main.java.com.fammateam.gestionresidencial.repository.AreaComunRepository
 import main.java.com.fammateam.gestionresidencial.repository.CasaResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CondominioRepository;
 import main.java.com.fammateam.gestionresidencial.repository.CuotaRepository;
+import main.java.com.fammateam.gestionresidencial.repository.PagoRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ReservaRepository;
 import main.java.com.fammateam.gestionresidencial.repository.ResidenteRepository;
 import main.java.com.fammateam.gestionresidencial.repository.UsuarioRepository;
@@ -32,6 +34,7 @@ import main.java.com.fammateam.gestionresidencial.service.CasaResidenteService;
 import main.java.com.fammateam.gestionresidencial.service.CasaService;
 import main.java.com.fammateam.gestionresidencial.service.CondominioService;
 import main.java.com.fammateam.gestionresidencial.service.CuotaService;
+import main.java.com.fammateam.gestionresidencial.service.PagoService;
 import main.java.com.fammateam.gestionresidencial.service.ReservaService;
 import main.java.com.fammateam.gestionresidencial.service.ResidenteService;
 
@@ -224,4 +227,20 @@ public class SceneManager {
             return null;
         });
     }
+
+    public void showPagoView() {
+        loadView("gestion-pagos-view.fxml", "Gestion Residencial - Gestion de Pagos", clazz -> {
+            if (clazz == PagoController.class) {
+                CondominioRepository condominioRepository = new CondominioRepository();
+                CondominioService condominioService = new CondominioService(condominioRepository);
+                CuotaRepository cuotaRepository = new CuotaRepository();
+                CuotaService cuotaService = new CuotaService(cuotaRepository);
+                PagoRepository pagoRepository = new PagoRepository();
+                PagoService pagoSerivce = new PagoService(pagoRepository);
+                return new PagoController(this, condominioService, cuotaService, pagoSerivce);
+            }
+            return null;
+        });
+    }
+
 }

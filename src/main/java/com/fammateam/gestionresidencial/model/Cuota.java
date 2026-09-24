@@ -12,6 +12,7 @@ public class Cuota {
     private double monto;
     private EstadoCuota estado;
     private LocalDate fechaVencimiento;
+    private String numeroCasa;
 
     public Cuota(int idCuota, int idCasa, int mes, int anio, double monto, EstadoCuota estado, LocalDate fechaVencimiento) {
         this.idCuota = idCuota;
@@ -22,8 +23,14 @@ public class Cuota {
         this.estado = estado;
         this.fechaVencimiento = fechaVencimiento;
     }
-    
-        public int getIdCuota() {
+
+    public Cuota(int idCuota, int idCasa, String numeroCasa) {
+        this.idCuota = idCuota;
+        this.idCasa = idCasa;
+        this.numeroCasa = numeroCasa;
+    }
+
+    public int getIdCuota() {
         return idCuota;
     }
 
@@ -78,4 +85,14 @@ public class Cuota {
     public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
+
+    public String getNumeroCasa() {
+        return numeroCasa;
+    }
+
+    public void setNumeroCasa(String numeroCasa) {
+        this.numeroCasa = numeroCasa;
+    }
+    
+    
 }
