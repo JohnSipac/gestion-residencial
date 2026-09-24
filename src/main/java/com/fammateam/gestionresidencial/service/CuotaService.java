@@ -40,25 +40,30 @@ public class CuotaService {
             throw e;
         }
     }
-    
-    public boolean actualizarCuota(Cuota cuota)throws SQLException {
-    
-        if(cuota.getIdCuota() <= 0){
-        throw new IllegalArgumentException("El monto que quiere actualizar no puede ser 0 o negativo.");
+
+    public boolean actualizarCuota(Cuota cuota) throws SQLException {
+
+        if (cuota.getIdCuota() <= 0) {
+            throw new IllegalArgumentException("El monto que quiere actualizar no puede ser 0 o negativo.");
         }
-        
+
         Cuota cuotaSelect = cuotaRepository.findCuotaById(cuota);
-        if(cuotaSelect == null){
-        throw new IllegalArgumentException("La cuota que intenta actualizar no existe.");
-        }  
+        if (cuotaSelect == null) {
+            throw new IllegalArgumentException("La cuota que intenta actualizar no existe.");
+        }
         return cuotaRepository.updateCuota(cuota);
-    } 
-    
-    public boolean eliminarCuota(Cuota cuota)throws SQLException{
+    }
+
+    public boolean eliminarCuota(Cuota cuota) throws SQLException {
         Cuota cuotaSelect = cuotaRepository.findCuotaById(cuota);
-    if(cuotaSelect == null){
-    throw new IllegalArgumentException("La cuota que quiere eliminar no existe.");
+        if (cuotaSelect == null) {
+            throw new IllegalArgumentException("La cuota que quiere eliminar no existe.");
+        }
+        return cuotaRepository.deleteCuota(cuota);
     }
-    return cuotaRepository.deleteCuota(cuota);
+
+    public ObservableList<Cuota> listaCuotaConNumeroCasa() throws SQLException {
+        return cuotaRepository.listCuotaConNumeroCasa();
     }
+
 }

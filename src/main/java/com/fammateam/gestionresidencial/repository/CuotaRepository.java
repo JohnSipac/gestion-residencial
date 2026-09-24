@@ -95,6 +95,29 @@ public class CuotaRepository {
         }
     }
 
+    public ObservableList<Cuota> listCuotaConNumeroCasa() throws SQLException {
+        String sql = "SELECT c.id_cuota, c.id_casa, ca.numero_casa "
+                + "FROM cuotas c "
+                + "JOIN casas ca ON c.id_casa = ca.id_casa "
+                + "ORDER BY c.anio DESC, c.mes DESC";
+
+        try (PreparedStatement pstm = DataBaseConnection.getConnectionDataBase().prepareStatement(sql)) {
+
+            ResultSet rs = pstm.executeQuery();
+            ObservableList<Cuota> listaCuotas = FXCollections.observableArrayList();
+
+            while (rs.next()) {
+                listaCuotas.add(new Cuota(
+                        rs.getInt("id_cuota"),
+                        rs.getInt("id_casa"),
+                        rs.getString("numero_casa")
+                ));
+            }
+
+            return listaCuotas;
+        }
+    }
+
     public boolean createCuota(Cuota cuota) throws SQLException {
         String sql = "INSERT INTO cuotas (id_casa, mes, anio, monto, estado, fecha_vencimiento) VALUES (?, ?, ?, ?, ?, ?)";
 

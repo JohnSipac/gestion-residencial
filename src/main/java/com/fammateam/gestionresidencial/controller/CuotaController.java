@@ -403,4 +403,9 @@ public class CuotaController implements Initializable {
     private void handleGoToCasaView() {
         stage.showCasaView();
     }
+
+    @FXML
+    private void handleGoToPagoView() {
+        stage.showPagoView();
+    }
 }

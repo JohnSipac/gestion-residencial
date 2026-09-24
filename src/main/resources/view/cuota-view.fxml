@@ -129,6 +129,18 @@
                                         </ImageView>
                                     </graphic>
                                 </Button>
+                        <Button mnemonicParsing="false" onAction="#handleGoToPagoView" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
+                           <tooltip>
+                              <Tooltip text="Pagos" />
+                           </tooltip>
+                           <graphic>
+                              <ImageView fitHeight="37.0" fitWidth="34.0">
+                                 <image>
+                                    <Image url="@../images/pagos.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                                 <Region prefHeight="74.0" prefWidth="43.0" VBox.vgrow="ALWAYS" />
                                 <Button mnemonicParsing="false" onAction="#handleGoToLoginView" styleClass="button-secundary" stylesheets="@../css/cuotas.css">
                                     <tooltip>

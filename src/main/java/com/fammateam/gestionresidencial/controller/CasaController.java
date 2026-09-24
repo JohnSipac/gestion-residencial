@@ -360,4 +360,9 @@ public class CasaController implements Initializable {
         stage.showReservaView();
     }
 
+    @FXML
+    private void handleGoToPagoView() {
+        stage.showPagoView();
+    }
+
 }

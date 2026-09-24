@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="root-container" stylesheets="@../css/main-menu-view.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.com.fammateam.gestionresidencial.controller.MainMenuController">
 
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -168,6 +168,15 @@
                                     <ImageView fitHeight="74.0" fitWidth="75.0">
                                        <image>
                                           <Image url="@../images/reservas.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button contentDisplay="TOP" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleGoToPagoView" prefHeight="130.0" prefWidth="170.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #FFFFFF;" styleClass="icon-button-active" stylesheets="@../css/main-menu-view.css" text="PAGOS">
+                                 <graphic>
+                                    <ImageView fitHeight="79.0" fitWidth="88.0">
+                                       <image>
+                                          <Image url="@../images/pagos.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
