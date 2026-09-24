@@ -102,4 +102,9 @@ public class MainMenuController implements Initializable {
     private void handleGoToReserva() {
         sceneManager.showReservaView();
     }
+
+    @FXML
+    private void handleGoToPagoView() {
+        sceneManager.showPagoView();
+    }
 }
